@@ -656,3 +656,22 @@ Caused by: org.eclipse.core.runtime.CoreException: Cannot determine URI for '/co
 	at org.eclipse.ui.texteditor.AbstractTextEditor.internalInit(AbstractTextEditor.java:3182)
 	... 123 common frames omitted
 2022-12-14 22:29:30,085 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-12-14 22:43:40,758 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-12-14 22:44:33,686 [Worker-0: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:constructSpringApp1:0.0.1-SNAPSHOT @ C:\Users\hp\Documents\GitHub\posh-spoon-1281\constructSpringApp1\pom.xml.
+2022-12-14 22:44:39,513 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-14 22:44:39,558 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-14 22:44:39,565 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\hp\Documents\GitHub\posh-spoon-1281\constructSpringApp1\src\test\resources
+2022-12-14 22:48:59,232 [Worker-13: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2022-12-14 22:48:59,831 [Worker-13: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:constructSpringApp1:0.0.1-SNAPSHOT @ C:\Users\hp\Documents\GitHub\posh-spoon-1281\constructSpringApp1\pom.xml.
+2022-12-14 22:49:00,763 [Worker-13: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /constructSpringApp1/src/main/java
+2022-12-14 22:49:00,764 [Worker-13: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /constructSpringApp1/src/main/resources
+2022-12-14 22:49:00,764 [Worker-13: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /constructSpringApp1/src/main/resources
+2022-12-14 22:49:00,765 [Worker-13: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /constructSpringApp1/src/test/java
+2022-12-14 22:49:01,756 [Worker-13: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 2 sec
+2022-12-14 22:49:02,657 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-14 22:49:02,682 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-14 22:49:02,687 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\hp\Documents\GitHub\posh-spoon-1281\constructSpringApp1\src\test\resources
+2022-12-14 22:49:11,990 [Worker-20: Launching constructSpringApp1 - ConstructSpringApp1Application] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:constructSpringApp1:0.0.1-SNAPSHOT @ C:\Users\hp\Documents\GitHub\posh-spoon-1281\constructSpringApp1\pom.xml.
+2022-12-14 22:49:12,724 [Worker-20: Launching constructSpringApp1 - ConstructSpringApp1Application] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-14 22:49:12,724 [Worker-20: Launching constructSpringApp1 - ConstructSpringApp1Application] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-14 22:49:12,729 [Worker-20: Launching constructSpringApp1 - ConstructSpringApp1Application] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\hp\Documents\GitHub\posh-spoon-1281\constructSpringApp1\src\test\resources
