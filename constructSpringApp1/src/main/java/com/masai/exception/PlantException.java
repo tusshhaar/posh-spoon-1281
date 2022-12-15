@@ -1,5 +1,10 @@
-package Exceptions;
+package com.masai.exception;
 
-public class PlantException {
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+public class PlantException extends RuntimeException{
+	public PlantException(String message) {
+		super(message);
+	}
 }

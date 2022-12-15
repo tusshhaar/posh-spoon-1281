@@ -1,5 +1,11 @@
-package Exceptions;
+package com.masai.exception;
 
-public class OrderException {
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+public class OrderException extends RuntimeException{
+	public OrderException(String message) {
+		super(message);
+	}
 }
+
