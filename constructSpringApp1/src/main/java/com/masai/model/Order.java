@@ -1,4 +1,4 @@
-package Model;
+package com.masai.model;
 
 public class Order {
 
