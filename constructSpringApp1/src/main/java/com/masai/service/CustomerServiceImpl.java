@@ -11,6 +11,8 @@ import com.masai.model.Customer;
 import com.masai.model.CustomerCurrentUserSession;
 import com.masai.model.CustomerLoginDTO;
 import com.masai.model.RandomString;
+import com.masai.repository.AdminRepo;
+import com.masai.repository.AdminSessionRepo;
 import com.masai.repository.CustomerRepo;
 import com.masai.repository.CustomerSessionRepo;
 
@@ -22,6 +24,12 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	private CustomerSessionRepo sessionRepo;
+	
+	@Autowired
+	private AdminSessionRepo adminRepo;
+	
+	@Autowired
+	private AdminRepo aRepo;
 
 	@Override
 	public Customer registerCustomer(Customer customer) throws CustomerException {
@@ -97,5 +105,48 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		
 	}
+
+	@Override
+	public Customer upDateCustomer(Customer customer, String key) throws CustomerException {
+		
+		CustomerCurrentUserSession session = sessionRepo.findByCustomerUuid(key);
+		
+		if(session==null) {
+			
+			throw new CustomerException("Please enter a valid key");
+			
+		}else if(session.getCustomerId()==customer.getCustomerId()) {
+			
+			Customer updateCustomer = cRepo.save(customer);
+			
+			return updateCustomer;
+			
+		}
+		else
+			
+			throw new CustomerException("Inavlid credentials please login first");
+		
+	}
+
+	@Override
+	public Customer seeProfile(Integer id) throws CustomerException {
+		
+		Optional<CustomerCurrentUserSession> session = sessionRepo.findById(id);
+		
+		if(session.isPresent()) {
+			
+			Optional<Customer> c = cRepo.findById(session.get().getCustomerId());
+			Customer customer = c.get();
+			
+			return customer;
+			
+		}else
+			
+			throw new CustomerException("Please enter valid id or login first");
+		
+	}
+	
+	
+	
 
 }

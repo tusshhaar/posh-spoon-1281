@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +48,22 @@ public class CustomerController {
 		String str = cService.logoutCustomer(key);
 		
 		return new ResponseEntity<String>(str, HttpStatus.OK);
+	}
+	
+	@PutMapping("/update/{key}")
+	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer, @PathVariable("key") String key) throws CustomerException{
+		
+		Customer updateCustomer = cService.upDateCustomer(customer, key);
+		
+		return new ResponseEntity<>(updateCustomer, HttpStatus.OK);
+	}
+	
+	@GetMapping("/profile/{id}")
+	public ResponseEntity<Customer> viewProfile(@PathVariable("id") Integer id) throws CustomerException{
+		
+		Customer customer = cService.seeProfile(id);
+		
+		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 	}
 	
 }
