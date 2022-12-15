@@ -15,15 +15,14 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AdminCurrentUserSession {
-	
+public class CustomerCurrentUserSession {
+
 	@Id
 	@Column(unique = true)
-	private Integer adminId;
+	private Integer customerId;
 	
-	private String adminUuid;
+	private String customerUuid;
 	
 	private LocalDateTime localDateTime;
-	
 	
 }
