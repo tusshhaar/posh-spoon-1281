@@ -2,9 +2,13 @@ package com.masai.model;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AdminLoginDTO {
 
 	@NotNull(message = "username should be mandatory")
@@ -15,30 +19,5 @@ public class AdminLoginDTO {
 	@NotEmpty(message = "password should be mandatory")
 	private String adminPassword;
 	
-	public AdminLoginDTO() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public AdminLoginDTO(String adminUsername, String adminPassword) {
-		super();
-		this.adminUsername = adminUsername;
-		this.adminPassword = adminPassword;
-	}
-
-	public String getAdminUsername() {
-		return adminUsername;
-	}
-
-	public void setAdminUsername(String adminUsername) {
-		this.adminUsername = adminUsername;
-	}
-
-	public String getAdminPassword() {
-		return adminPassword;
-	}
-
-	public void setAdminPassword(String adminPassword) {
-		this.adminPassword = adminPassword;
-	}
 	
 }

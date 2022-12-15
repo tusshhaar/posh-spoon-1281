@@ -11,6 +11,7 @@ import com.masai.exception.AdminLoginException;
 import com.masai.model.Admin;
 import com.masai.model.AdminCurrentUserSession;
 import com.masai.model.AdminLoginDTO;
+import com.masai.model.Customer;
 import com.masai.model.RandomString;
 import com.masai.repository.AdminRepo;
 
