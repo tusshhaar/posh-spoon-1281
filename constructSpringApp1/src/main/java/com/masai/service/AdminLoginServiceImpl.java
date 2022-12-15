@@ -1,13 +1,16 @@
 package com.masai.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.repository.AdminSessionRepo;
+import com.masai.repository.CustomerRepo;
 import com.masai.exception.AdminLoginException;
+import com.masai.exception.CustomerException;
 import com.masai.model.Admin;
 import com.masai.model.AdminCurrentUserSession;
 import com.masai.model.AdminLoginDTO;
@@ -23,6 +26,9 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	
 	@Autowired
 	private AdminSessionRepo loggedRepo;
+	
+	@Autowired
+	private CustomerRepo customerRepo;
 	
 	
 	//ADMIN LOGIN
@@ -77,6 +83,23 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 		}else
 			
 			throw new AdminLoginException("Please enter a valid key");
+		
+	}
+
+	@Override
+	public List<Customer> viewAllCustomers(String key) throws CustomerException {
+		
+		AdminCurrentUserSession adminSession = loggedRepo.findByAdminUuid(key);
+		
+		if(adminSession==null) {
+			
+			throw new CustomerException("You are not authorize. Only admin can see the customer list");
+			
+		}
+			
+			List<Customer> customers = customerRepo.findAll();
+			
+			return customers;
 		
 	}
 
