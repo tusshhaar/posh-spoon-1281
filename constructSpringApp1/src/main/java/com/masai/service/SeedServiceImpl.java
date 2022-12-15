@@ -2,13 +2,17 @@ package com.masai.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.masai.model.Seed;
 
+@Service
 public class SeedServiceImpl implements SeedServices{
 
 	@Override
 	public Seed addSeed(Seed seed) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
