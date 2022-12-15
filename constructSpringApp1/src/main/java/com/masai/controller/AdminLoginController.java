@@ -27,6 +27,9 @@ public class AdminLoginController {
 	
 	@Autowired
 	private AdminLoginService aLoginService;
+
+	@Autowired
+	private PlanterService pService;
 	
 	@GetMapping("/login")
 	public ResponseEntity<String> adminLogin(@RequestBody AdminLoginDTO loginDTO) throws AdminLoginException{
@@ -50,5 +53,47 @@ public class AdminLoginController {
 		List<Customer> customers = aLoginService.viewAllCustomers(key);
 		
 		return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
+	}
+
+@PostMapping("/{loginId}/planter")
+	public ResponseEntity<Planter> addPlanterHandler(@PathVariable("loginId")String uuid,@RequestBody Planter planter){
+		Planter register = pService.addPlanter(uuid, planter);
+		return new ResponseEntity<Planter>(register,HttpStatus.ACCEPTED);
+	}
+	
+	@PutMapping("/{loginId}/planter")
+	public ResponseEntity<Planter> updatePlanterHandler(@PathVariable("loginId")String uuid,@RequestBody Planter planter){
+		Planter update = pService.updatePlanter(uuid, planter);
+		return new ResponseEntity<Planter>(update,HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{loginId}/planter/{planterId}")
+	public ResponseEntity<Planter> deletePlanterHandler(@PathVariable("loginId")String uuid,@PathVariable Integer planterId){
+		Planter planter = pService.deletePlanter(uuid, planterId);
+		return new ResponseEntity<Planter>(planter,HttpStatus.OK);
+	}
+	
+	@GetMapping("/{loginId}/planter/{planterId}")
+	public ResponseEntity<Planter> getPlanterByIdHandler(@PathVariable("loginId")String uuid,@PathVariable Integer planterId){
+		Planter planter = pService.viewPlanter(uuid,planterId);
+		return new ResponseEntity<Planter>(planter,HttpStatus.OK);
+	}
+	
+	@GetMapping("/{loginId}/planter/{shape}")
+	public ResponseEntity<Planter> getPlanterByShapeHandler(@PathVariable("loginId")String uuid, @PathVariable("shape")String shape){
+		Planter planter = pService.viewPlanterByShape(uuid,shape);
+		return new ResponseEntity<Planter>(planter,HttpStatus.OK);
+	}
+	
+	@GetMapping("/planters")
+	public ResponseEntity<List<Planter>> getPlantersHandler(){
+		List<Planter> planters = pService.viewAllPlanters();
+		return new ResponseEntity<List<Planter>>(planters,HttpStatus.OK);
+	}
+	
+	@GetMapping("/planter/{min}/{max}")
+	public ResponseEntity<List<Planter>> getPlantersByCostRangeHandler(@PathVariable("min")Double min,@PathVariable("max")Double max){
+		List<Planter> planter = pService.viewAllPlanters(min, max);
+		return new ResponseEntity<List<Planter>>(planter,HttpStatus.OK);
 	}
 }
