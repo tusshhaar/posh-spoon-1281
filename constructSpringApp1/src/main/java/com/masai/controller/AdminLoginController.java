@@ -82,26 +82,28 @@ public class AdminLoginController {
 	}
 	
 	@GetMapping("/{loginId}/planter/{planterId}")
-	public ResponseEntity<Planter> getPlanterByIdHandler(@PathVariable("loginId")String uuid,@PathVariable Integer planterId) throws PlanterException, AdminException{
+	public ResponseEntity<Planter> getPlanterByIdHandler(@PathVariable("loginId")String uuid,@PathVariable Integer planterId) throws PlanterException, AdminException, CustomerException{
 		Planter planter = pService.viewPlanter(uuid,planterId);
 		return new ResponseEntity<Planter>(planter,HttpStatus.OK);
 	}
 	
 	@GetMapping("/{loginId}/planter/{shape}")
-	public ResponseEntity<Planter> getPlanterByShapeHandler(@PathVariable("loginId")String uuid, @PathVariable("shape")String shape) throws PlanterException, AdminException{
+	public ResponseEntity<Planter> getPlanterByShapeHandler(@PathVariable("loginId")String uuid, @PathVariable("shape")String shape) throws PlanterException, AdminException, CustomerException{
 		Planter planter = pService.viewPlanterByShape(uuid,shape);
 		return new ResponseEntity<Planter>(planter,HttpStatus.OK);
 	}
 	
 	@GetMapping("/planters")
-	public ResponseEntity<List<Planter>> getPlantersHandler(){
-		List<Planter> planters = pService.viewAllPlanters();
+	public ResponseEntity<List<Planter>> getPlantersHandler(String uuid) throws PlanterException, CustomerException{
+		
+		List<Planter> planters = pService.viewAllPlanters(uuid);
+		
 		return new ResponseEntity<List<Planter>>(planters,HttpStatus.OK);
 	}
 	
 	@GetMapping("/planter/{min}/{max}")
-	public ResponseEntity<List<Planter>> getPlantersByCostRangeHandler(@PathVariable("min")Double min,@PathVariable("max")Double max){
-		List<Planter> planter = pService.viewAllPlanters(min, max);
+	public ResponseEntity<List<Planter>> getPlantersByCostRangeHandler(String uuid,@PathVariable("min")Double min,@PathVariable("max")Double max) throws PlanterException, CustomerException{
+		List<Planter> planter = pService.viewAllPlanters(uuid,min, max);
 		return new ResponseEntity<List<Planter>>(planter,HttpStatus.OK);
 	}
 
