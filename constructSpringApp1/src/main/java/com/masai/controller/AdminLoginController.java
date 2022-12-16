@@ -2,6 +2,9 @@ package com.masai.controller;
 
 import java.util.List;
 
+import com.masai.exception.*;
+import com.masai.model.Plant;
+import com.masai.service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.masai.exception.AdminException;
-import com.masai.exception.AdminLoginException;
-import com.masai.exception.CustomerException;
-import com.masai.exception.PlanterException;
 import com.masai.model.AdminLoginDTO;
 import com.masai.model.Customer;
 import com.masai.model.Planter;
@@ -36,6 +35,9 @@ public class AdminLoginController {
 
 	@Autowired
 	private PlanterService pService;
+
+	@Autowired
+	private PlantService plantService;
 	
 	@GetMapping("/login")
 	public ResponseEntity<String> adminLogin(@RequestBody AdminLoginDTO loginDTO) throws AdminLoginException{
@@ -102,4 +104,46 @@ public class AdminLoginController {
 		List<Planter> planter = pService.viewAllPlanters(min, max);
 		return new ResponseEntity<List<Planter>>(planter,HttpStatus.OK);
 	}
+
+
+
+	/*---------------------------------------------------------------------Plant Section-------------------------------------------------------------------*/
+	// Add plant
+
+	@PostMapping("/plants/{key}")
+	public ResponseEntity<Plant> addPlantHandler(@RequestBody Plant plant, @PathVariable("key") String key) throws PlantNotFoundException, AdminLoginException {
+
+		Plant pObj = plantService.addPlant(plant,"key");
+
+		return new ResponseEntity<Plant>(pObj, HttpStatus.CREATED);
+
+
+	}
+
+	// Updating existing plant details
+
+	@PutMapping("/plants/{key}")
+	public ResponseEntity<Plant> updatePlantHandler(@PathVariable("key") String key,@RequestBody Plant plant) throws PlantNotFoundException, AdminLoginException {
+
+		Plant pObj = plantService.updatePlant(plant,key);
+
+		return new ResponseEntity<Plant>(pObj, HttpStatus.ACCEPTED);
+
+
+	}
+
+	// Delete existing plant by PlantId
+
+	@DeleteMapping("/plants/{key}/{id}")
+	public ResponseEntity<Plant> deletePlantByIdHandler(@PathVariable("key") String key,@PathVariable("id") Integer plantId) throws PlantNotFoundException, AdminLoginException {
+
+
+		Plant plant = plantService.deletePlantById(plantId,key);
+
+		return new ResponseEntity<Plant>(plant, HttpStatus.OK);
+
+
+	}
+
+	/*---------------------------------------------------------------------**Plant Section End**---------------------------------------------------------------*/
 }

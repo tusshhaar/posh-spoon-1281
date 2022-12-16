@@ -1,6 +1,7 @@
 package com.masai.service;
 
 
+import com.masai.exception.AdminLoginException;
 import com.masai.exception.PlantNotFoundException;
 import com.masai.model.Plant;
 
@@ -8,11 +9,11 @@ import java.util.List;
 
 public interface PlantService{
 
-    public Plant addPlant(Plant plant);
+    public Plant addPlant(Plant plant, String key) throws AdminLoginException;
 
-    public Plant updatePlant(Plant plant) throws PlantNotFoundException;
+    public Plant updatePlant(Plant plant,String key) throws PlantNotFoundException,AdminLoginException;
 
-    public Plant deletePlantById(Integer plantId) throws PlantNotFoundException;
+    public Plant deletePlantById(Integer plantId,String key) throws PlantNotFoundException,AdminLoginException;
 
     public Plant viewPlantById(Integer plantId) throws PlantNotFoundException;
 

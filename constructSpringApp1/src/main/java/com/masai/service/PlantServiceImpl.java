@@ -1,8 +1,11 @@
 package com.masai.service;
 
 
+import com.masai.exception.AdminLoginException;
 import com.masai.exception.PlantNotFoundException;
+import com.masai.model.AdminCurrentUserSession;
 import com.masai.model.Plant;
+import com.masai.repository.AdminSessionRepo;
 import com.masai.repository.PlantDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,36 +20,62 @@ public class PlantServiceImpl implements PlantService {
 	@Autowired
 	private PlantDao pdao;
 
-	@Override
-	public Plant addPlant(Plant plant) {
-	  Plant plants=	pdao.save(plant);
-		return plants;
-	}
+	@Autowired
+	private AdminSessionRepo adminSessionRepo;
 
 	@Override
-	public Plant updatePlant(Plant plant) throws PlantNotFoundException {
-		Optional<Plant> opt = pdao.findById(plant.getPlantId());
+	public Plant addPlant(Plant plant, String key) throws AdminLoginException {
 
-		if (opt.isPresent()) {
+		AdminCurrentUserSession adminCurrentUserSession= adminSessionRepo.findByAdminUuid(key);
 
-			return pdao.save(plant);
-
-		} else {
-			throw new PlantNotFoundException("No plant found with this Plant Id :");
+		if(adminCurrentUserSession!=null){
+			Plant plants=pdao.save(plant);
+			return plants;
+		}else{
+			throw new AdminLoginException("Login first...");
 		}
 	}
 
 	@Override
-	public Plant deletePlantById(Integer plantId) throws PlantNotFoundException {
-		Optional<Plant> opt = pdao.findById(plantId);
+	public Plant updatePlant(Plant plant, String key) throws PlantNotFoundException,AdminLoginException {
 
-		if (opt.isPresent()) {
-			Plant plant = opt.get();
-			pdao.delete(plant);
-			return plant;
-		} else {
-			throw new PlantNotFoundException("No plant present with this Plant Id :"+plantId);
+		AdminCurrentUserSession adminCurrentUserSession= adminSessionRepo.findByAdminUuid(key);
+		if(adminCurrentUserSession!=null){
+			Optional<Plant> opt = pdao.findById(plant.getPlantId());
+
+			if (opt.isPresent()) {
+
+				return pdao.save(plant);
+
+			} else {
+				throw new PlantNotFoundException("No plant found with this Plant Id :");
+			}
+		}else{
+			throw new AdminLoginException(" Please Login first...");
 		}
+
+	}
+
+	@Override
+	public Plant deletePlantById(Integer plantId, String key) throws PlantNotFoundException,AdminLoginException {
+
+
+		AdminCurrentUserSession adminCurrentUserSession= adminSessionRepo.findByAdminUuid(key);
+		if(adminCurrentUserSession!=null){
+			Optional<Plant> opt = pdao.findById(plantId);
+
+			if (opt.isPresent()) {
+				Plant plant = opt.get();
+				pdao.delete(plant);
+				return plant;
+			} else {
+				throw new PlantNotFoundException("No plant present with this Plant Id :"+plantId);
+			}
+		}else{
+			throw new AdminLoginException("Please Login first...");
+		}
+
+
 	}
 
 	@Override

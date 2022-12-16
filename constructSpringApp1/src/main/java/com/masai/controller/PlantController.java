@@ -16,41 +16,7 @@ public class PlantController {
     @Autowired
     private PlantService pService;
 
-    @PostMapping("/plants")
-    public ResponseEntity<Plant> addPlantHandler( @RequestBody Plant plant) throws PlantNotFoundException {
 
-            Plant pObj = pService.addPlant(plant);
-
-            return new ResponseEntity<Plant>(pObj, HttpStatus.CREATED);
-
-
-        }
-
-
-    // Updating existing plant details
-
-    @PutMapping("plants")
-    public ResponseEntity<Plant> updatePlantHandler(@RequestBody Plant plant) throws PlantNotFoundException{
-
-            Plant pObj = pService.updatePlant(plant);
-
-            return new ResponseEntity<Plant>(pObj, HttpStatus.ACCEPTED);
-
-
-        }
-
-    // Delete existing plant by Plant Id
-
-    @DeleteMapping("/plants/{id}")
-    public ResponseEntity<Plant> deletePlantByIdHandler(@PathVariable("id") Integer plantId) throws PlantNotFoundException {
-
-
-            Plant plant = pService.deletePlantById(plantId);
-
-            return new ResponseEntity<Plant>(plant, HttpStatus.OK);
-
-
-        }
 
     // View plant by Plant Id
 
