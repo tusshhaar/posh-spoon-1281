@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.masai.exception.CustomerException;
 import com.masai.model.Customer;
 import com.masai.model.CustomerLoginDTO;
+import com.masai.model.Planter;
 import com.masai.service.CustomerService;
+import com.masai.service.ItemOrderService;
 
 @RestController
 @RequestMapping("/customer")
@@ -25,6 +27,9 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService cService;
+	
+	@Autowired
+	private ItemOrderService iService;
 	
 	@PutMapping("/register")
 	public ResponseEntity<Customer> registerCustomer(@RequestBody Customer c1) throws CustomerException{
@@ -64,6 +69,16 @@ public class CustomerController {
 		Customer customer = cService.seeProfile(id);
 		
 		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+	}
+	
+	@GetMapping("/planterseed/{seed}")
+	public ResponseEntity<Planter> getPlanterWithSeed(@PathVariable("seed") String seed){
+		
+		Planter planter = iService.findSeedWithPlanter(seed);
+		
+		return new ResponseEntity<Planter>(planter, HttpStatus.OK);
+		
+		
 	}
 	
 }

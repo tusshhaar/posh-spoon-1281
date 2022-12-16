@@ -1,5 +1,7 @@
 package com.masai.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,20 +14,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Seed {
+public class ItemOrder {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer seedId;
-	private String commanName;
-	private String bloomTime;
-	private String watering;
-	private String difficultLevel;
-	private String temparature;
-	private String TypeOfSeed;
-	private String SeedDescription;
-	private Integer SeedStock;
-	private Double SeedsCost;
-	private Integer SeedPerPacked;
-
+	private Integer bookingOrderId;
+	private LocalDateTime localDateTime;
+	private String transactionMode;
+	private Integer quantity;
+	private Double totalCost;
+	
 }

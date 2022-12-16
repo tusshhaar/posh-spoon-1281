@@ -1,11 +1,11 @@
 package com.masai.model;
 
-import java.util.Set;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +26,9 @@ public class Planter {
 	private Integer planterStock;
 	private Integer planterCost;
 	
-//	private Set<Plant> setPlant;
-//	private Set<Seed> setSeed;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Seed seed;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Plant plant;
 }
