@@ -18,4 +18,8 @@ public interface PlanterRepo extends JpaRepository<Planter, Integer>{
 	@Query("Select p from Planter p where p.planterCost between :min and :max")
 	public List<Planter> findByPlanterBetweenMinAndMax(@Param("min") Double min,@Param("max") Double max);
 	
+	
+	@Query("select p from Planter p where p.seed.commanName = ?1")
+	public Planter getPlanterBySeed(String seed);
+
 }
