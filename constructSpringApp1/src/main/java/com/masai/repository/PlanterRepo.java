@@ -13,7 +13,7 @@ public interface PlanterRepo extends JpaRepository<Planter, Integer>{
 	
 	public Optional<Planter> findByPlanterShape(String planterShape);
 	
-	@Query("select from p Planter where p.planterCost between :min and :max")
+	@Query("select p from Planter p where p.planterCost between :min and :max")
 	public List<Planter> findByPlanterBetweenMinAndMax(@Param("min") Double min,@Param("max") Double max);
 	
 }

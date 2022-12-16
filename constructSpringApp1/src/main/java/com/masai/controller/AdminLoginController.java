@@ -21,8 +21,10 @@ import com.masai.exception.CustomerException;
 import com.masai.exception.PlanterException;
 import com.masai.model.AdminLoginDTO;
 import com.masai.model.Customer;
+import com.masai.model.OrderTable;
 import com.masai.model.Planter;
 import com.masai.service.AdminLoginService;
+import com.masai.service.OrderService;
 import com.masai.service.PlanterService;
 
 import jakarta.validation.Valid;
@@ -36,6 +38,9 @@ public class AdminLoginController {
 
 	@Autowired
 	private PlanterService pService;
+	
+	@Autowired
+	private OrderService oService;
 	
 	@GetMapping("/login")
 	public ResponseEntity<String> adminLogin(@RequestBody AdminLoginDTO loginDTO) throws AdminLoginException{
@@ -102,4 +107,30 @@ public class AdminLoginController {
 		List<Planter> planter = pService.viewAllPlanters(min, max);
 		return new ResponseEntity<List<Planter>>(planter,HttpStatus.OK);
 	}
+	
+	@PostMapping("/order/{key}")
+	public ResponseEntity<String> addOrder(@RequestBody OrderTable order, @PathVariable("key") String key) throws AdminLoginException{
+		
+		String str = oService.addPlanter(order, key);
+		
+		return new ResponseEntity<String>(str, HttpStatus.ACCEPTED);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
