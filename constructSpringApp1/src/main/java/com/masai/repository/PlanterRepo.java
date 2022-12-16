@@ -6,14 +6,16 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.masai.model.Planter;
 
+@Repository
 public interface PlanterRepo extends JpaRepository<Planter, Integer>{
 	
 	public Optional<Planter> findByPlanterShape(String planterShape);
 	
-	@Query("select from p Planter where p.planterCost between :min and :max")
+	@Query("Select p from Planter p where p.planterCost between :min and :max")
 	public List<Planter> findByPlanterBetweenMinAndMax(@Param("min") Double min,@Param("max") Double max);
 	
 }
