@@ -5,6 +5,7 @@ import java.util.List;
 import com.masai.exception.CustomerException;
 import com.masai.exception.OrderException;
 import com.masai.exception.PlanterException;
+import com.masai.exception.SeedException;
 import com.masai.model.ItemOrder;
 import com.masai.model.Plant;
 import com.masai.model.Planter;
@@ -20,12 +21,12 @@ public interface ItemOrderService {
 	
 	public String buyPlanterWithPlant(ItemOrder order, String key, Integer planterId) throws CustomerException, PlanterException;
 
-	public Planter buyPlanterBYShapeAndId(String key, String shape, Integer planterId) throws CustomerException, PlanterException;
+	public String buyPlanterBYShapeAndId(ItemOrder order, String key, String shape, Integer planterId) throws CustomerException, PlanterException;
 	
 	public List<Plant> viewPlantByName(String key, String name) throws CustomerException, PlanterException;
 	
-	public Plant buyPlantWithNameAndId(String name, Integer id, String key) throws CustomerException, PlanterException;
+	public String buyPlantWithNameAndId(ItemOrder order, String name, Integer id, String key) throws CustomerException, PlanterException;
 	
-	
+	public String buySeedWithName(ItemOrder order, String name, String key) throws CustomerException, SeedException;
 	
 }

@@ -11,14 +11,17 @@ import org.springframework.stereotype.Service;
 import com.masai.exception.CustomerException;
 import com.masai.exception.OrderException;
 import com.masai.exception.PlanterException;
+import com.masai.exception.SeedException;
 import com.masai.model.CustomerCurrentUserSession;
 import com.masai.model.ItemOrder;
 import com.masai.model.Plant;
 import com.masai.model.Planter;
+import com.masai.model.Seed;
 import com.masai.repository.CustomerSessionRepo;
 import com.masai.repository.ItemOrderRepo;
 import com.masai.repository.PlantDao;
 import com.masai.repository.PlanterRepo;
+import com.masai.repository.SeedRepo;
 
 @Service
 public class ItemOrderServiceImpl implements ItemOrderService {
@@ -31,6 +34,9 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 	
 	@Autowired
 	private PlantDao pDao;
+	
+	@Autowired
+	private SeedRepo sRepo;
 	
 	@Autowired
 	private CustomerSessionRepo cSessionRepo;
@@ -98,7 +104,10 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 				  if(order.getQuantity() <= planter2.getPlanterStock()) {
 						
 					  order.setLocalDateTime(LocalDateTime.now());
+					  
 					  order.setTotalCost((planter2.getPlanterCost()+planter2.getSeed().getSeedsCost())*order.getQuantity());
+					  
+					  planter2.setPlanterStock(planter2.getPlanterStock() - order.getQuantity());
 					  
 					  iRepo.save(order);
 					  
@@ -137,7 +146,12 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 					  if(order.getQuantity() <= planter2.getPlanterStock()) {
 							
 						  order.setLocalDateTime(LocalDateTime.now());
+						  
 						  order.setTotalCost((planter2.getPlanterCost()+planter2.getSeed().getSeedsCost())*order.getQuantity());
+						  
+						  planter2.setPlanterStock(planter2.getPlanterStock() - order.getQuantity());
+						  
+						  pRepo.save(planter2);
 						  
 						  iRepo.save(order);
 						  
@@ -158,7 +172,7 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 
 	
 	@Override
-	public Planter buyPlanterBYShapeAndId(String key, String shape, Integer planterId) throws CustomerException, PlanterException {
+	public String buyPlanterBYShapeAndId(ItemOrder order, String key, String shape, Integer planterId) throws CustomerException, PlanterException {
 		
 		CustomerCurrentUserSession customerSession = cSessionRepo.findByCustomerUuid(key);
 		
@@ -172,7 +186,17 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 				
 				if(planter.getPlanterShape().equals(shape)) {
 					
-					return (Planter) planter;
+					order.setLocalDateTime(LocalDateTime.now());
+					
+					order.setTotalCost(planter.getPlanterCost()*order.getQuantity());
+					
+					planter.setPlanterStock(planter.getPlanterStock() - order.getQuantity());
+					
+					pRepo.save(planter);
+					
+					iRepo.save(order);
+					
+					return order.toString() + "      =======================      " + planter.toString();
 					
 				}else
 					
@@ -217,7 +241,7 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 	}
 
 	@Override
-	public Plant buyPlantWithNameAndId(String name, Integer id, String key) throws CustomerException, PlanterException {
+	public String buyPlantWithNameAndId(ItemOrder order, String name, Integer id, String key) throws CustomerException, PlanterException {
 		
 		CustomerCurrentUserSession session = cSessionRepo.findByCustomerUuid(key);
 		
@@ -231,7 +255,18 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 				
 				if(plant.getCommonName().equals(name)) {
 					
-					return plant;
+					order.setLocalDateTime(LocalDateTime.now());
+					
+					order.setTotalCost(plant.getPlantCost()*order.getQuantity());
+					
+					plant.setPlantsStock(plant.getPlantsStock() - order.getQuantity());
+					
+					pDao.save(plant);
+					
+					iRepo.save(order);
+					
+					return order.toString() + "      =======================      " + plant.toString();
+					
 				}else
 					
 					throw new PlanterException("No Plant is available with name :"+name);
@@ -245,6 +280,44 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 			throw new CustomerException("Please enter valid key");
 		
 		
+	}
+
+	@Override
+	public String buySeedWithName(ItemOrder order, String name, String key) throws CustomerException, SeedException {
+
+		CustomerCurrentUserSession session = cSessionRepo.findByCustomerUuid(key);
+		
+		if(session!=null) {
+			
+			Seed seed = sRepo.findByCommanName(name);
+			
+			if(seed!=null) {
+				
+				if(order.getQuantity()<=seed.getSeedStock()) {
+					
+					order.setLocalDateTime(LocalDateTime.now());
+					
+					order.setTotalCost(seed.getSeedsCost()*order.getQuantity());
+					
+					seed.setSeedStock(seed.getSeedStock() - order.getQuantity());
+					
+					sRepo.save(seed);
+					
+					iRepo.save(order);
+					
+					return order.toString() + "       ==============      " + seed.toString();
+					
+				}else
+					
+					throw new SeedException("Seed is out of Stock");
+				
+			}else
+				
+				throw new SeedException("There is no seed available with name :"+name);
+			
+		}else
+			
+			throw new CustomerException("Please enter valid key");
 	}
 
 	

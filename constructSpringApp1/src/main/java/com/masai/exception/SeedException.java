@@ -6,7 +6,7 @@ public class SeedException extends Exception{
 
 	}
 	
-	public SeedException(String massege) {
-		super(massege);
+	public SeedException(String message) {
+		super(message);
 	}
 }

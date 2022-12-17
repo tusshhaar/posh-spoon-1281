@@ -97,6 +97,19 @@ public class GlobalExceptionHandler {
 		
 	}
 	
+	@ExceptionHandler(SeedException.class)
+	public ResponseEntity<MyErrorDetails> seedExceptionHandler(SeedException se, WebRequest req){
+		
+		
+		MyErrorDetails err= new MyErrorDetails();
+			err.setTimestamp(LocalDateTime.now());
+			err.setMessage(se.getMessage());
+			err.setDetails(req.getDescription(false));
+				
+		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
+		
+	}
+	
 	
 	
 }
