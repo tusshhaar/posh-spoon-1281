@@ -123,4 +123,5 @@ public class Seed {
 				+ TypeOfSeed + ", SeedDescription=" + SeedDescription + ", SeedStock=" + SeedStock + ", SeedsCost="
 				+ SeedsCost + ", SeedPerPacked=" + SeedPerPacked + "]";
 	}
+
 }

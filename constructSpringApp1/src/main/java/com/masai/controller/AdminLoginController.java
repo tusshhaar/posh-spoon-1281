@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.exception.AdminLoginException;
 import com.masai.exception.CustomerException;
+import com.masai.exception.SeedException;
 import com.masai.model.AdminLoginDTO;
 import com.masai.model.Customer;
+import com.masai.model.Seed;
 import com.masai.service.AdminLoginService;
+import com.masai.service.SeedServices;
 
 import jakarta.validation.Valid;
 
@@ -27,7 +31,8 @@ public class AdminLoginController {
 	
 	@Autowired
 	private AdminLoginService aLoginService;
-	
+	@Autowired
+	private SeedServices seedServices;
 	@GetMapping("/login")
 	public ResponseEntity<String> adminLogin(@RequestBody AdminLoginDTO loginDTO) throws AdminLoginException{
 		
@@ -51,4 +56,13 @@ public class AdminLoginController {
 		
 		return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
 	}
+	
+	@PostMapping("/Seed/{key}")
+	public ResponseEntity<Seed> addSeedHandler(@RequestBody Seed seed, @PathVariable("key") String key) throws SeedException, AdminLoginException{
+		Seed obj=seedServices.addSeed(seed, key);
+		
+		return new ResponseEntity<>(obj,HttpStatus.CREATED);
+		
+	}
+	
 }
