@@ -11,6 +11,7 @@ import com.masai.model.Seed;
 public interface SeedRepo extends JpaRepository<Seed, Integer>{
 	
 	public Seed findByCommanName(String commanName);
+	
 	public List<Seed> findByTypeOfSeed(String typeOfSeed);
 	
 }
