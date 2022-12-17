@@ -143,7 +143,7 @@ public class AdminLoginController {
 	@PostMapping("/plants/{key}")
 	public ResponseEntity<Plant> addPlantHandler(@RequestBody Plant plant, @PathVariable("key") String key) throws PlantNotFoundException, AdminLoginException {
 
-		Plant pObj = plantService.addPlant(plant,"key");
+		Plant pObj = plantService.addPlant(plant,key);
 
 		return new ResponseEntity<Plant>(pObj, HttpStatus.CREATED);
 

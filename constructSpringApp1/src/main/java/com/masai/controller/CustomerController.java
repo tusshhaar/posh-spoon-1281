@@ -24,6 +24,7 @@ import com.masai.model.CustomerLoginDTO;
 import com.masai.model.ItemOrder;
 import com.masai.model.Plant;
 import com.masai.model.Planter;
+import com.masai.repository.PlantDao;
 import com.masai.service.CustomerService;
 import com.masai.service.ItemOrderService;
 
@@ -108,6 +109,14 @@ public class CustomerController {
 		List<Plant> plants = iService.viewPlantByName(key, name);
 		
 		return new ResponseEntity<List<Plant>>(plants, HttpStatus.OK);
+	}
+	
+	@GetMapping("/plant/buy/{id}/{name}/{key}")
+	public ResponseEntity<Plant> buyPlantWithNameAndId(@PathVariable("name") String name, @PathVariable("id") Integer id, @PathVariable("key") String key) throws CustomerException, PlanterException{
+		
+		Plant plant = iService.buyPlantWithNameAndId(name, id, key);
+		
+		return new ResponseEntity<Plant>(plant, HttpStatus.OK);
 	}
 	
 	

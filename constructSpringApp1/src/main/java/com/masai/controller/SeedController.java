@@ -28,9 +28,6 @@ public class SeedController {
 	@Autowired
 	SeedServices seedServices;
 	
-	@Autowired
-	AdminCurrentUserSession adminUser;
-	
 	
 	@PostMapping("/seed/{key}")
 	public ResponseEntity<Seed> addSeed(@RequestBody Seed seed, @PathVariable("key") String key) throws SeedException, AdminLoginException{

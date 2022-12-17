@@ -36,6 +36,8 @@ public class Planter {
 	@NotNull(message = "Planter Stock should not be null")
 	@Min(value = 0, message = "Planter stock is must be greater than equal to 1")
 	private Integer planterStock;
+	
+	private Double planterCost;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Seed seed;

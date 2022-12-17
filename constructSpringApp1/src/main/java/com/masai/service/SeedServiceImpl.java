@@ -1,7 +1,6 @@
 package com.masai.service;
 
 
-import java.lang.StackWalker.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.exception.AdminLoginException;
-import com.masai.exception.CustomerException;
 import com.masai.exception.SeedException;
 import com.masai.model.AdminCurrentUserSession;
 import com.masai.model.CustomerCurrentUserSession;
