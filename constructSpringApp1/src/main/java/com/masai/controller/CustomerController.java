@@ -2,6 +2,8 @@
 
 package com.masai.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.exception.CustomerException;
+import com.masai.exception.OrderException;
+import com.masai.exception.PlanterException;
 import com.masai.model.Customer;
 import com.masai.model.CustomerLoginDTO;
+import com.masai.model.ItemOrder;
+import com.masai.model.Plant;
 import com.masai.model.Planter;
 import com.masai.service.CustomerService;
 import com.masai.service.ItemOrderService;
@@ -71,14 +77,59 @@ public class CustomerController {
 		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 	}
 	
-	@GetMapping("/planterseed/{seed}")
-	public ResponseEntity<Planter> getPlanterWithSeed(@PathVariable("seed") String seed){
+	@GetMapping("/seedWithPlanter/{seed}/{key}")
+	public ResponseEntity<List<Planter>> getPlanterWithSeed(@PathVariable("seed") String seed, @PathVariable("key") String key) throws OrderException, CustomerException, PlanterException{
 		
-		Planter planter = iService.findSeedWithPlanter(seed);
+		List<Planter> planters = iService.findSeedWithPlanter(seed, key);
 		
-		return new ResponseEntity<Planter>(planter, HttpStatus.OK);
-		
-		
+		return new ResponseEntity<List<Planter>>(planters, HttpStatus.OK);
 	}
+	
+	@GetMapping("/planterWithSeed/buy/{planterId}/{key}")
+	public ResponseEntity<String> buyPlanterWithSeed(@RequestBody ItemOrder order, @PathVariable("key") String key, @PathVariable("planterId") Integer planterId) throws CustomerException, PlanterException{
+		
+		String str = iService.buyPlanterWithSeed(order, key, planterId);
+		
+		return new ResponseEntity<String>(str, HttpStatus.ACCEPTED);
+
+	}
+	
+	@GetMapping("/planterByShapeAndId/{planterId}/{shape}/{key}")
+	public ResponseEntity<Planter> buyPlanterByShape(@PathVariable("key") String key,@PathVariable("shape") String shape, @PathVariable("planterId") Integer planterId) throws CustomerException, PlanterException{
+		
+		Planter planters = iService.buyPlanterBYShapeAndId(key, shape, planterId);
+		
+		return new ResponseEntity<Planter>(planters, HttpStatus.OK);
+	}
+	
+	@GetMapping("plantName/{name}/{key}")
+	public ResponseEntity<List<Plant>> buyPlantByCommonName(@PathVariable("key") String key, @PathVariable("name") String name) throws CustomerException, PlanterException{
+		
+		List<Plant> plants = iService.viewPlantByName(key, name);
+		
+		return new ResponseEntity<List<Plant>>(plants, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
