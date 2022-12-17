@@ -50,9 +50,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("/{loginId}/planter/{shape}")
-	public ResponseEntity<Planter> getPlanterByShapeHandler(@PathVariable("loginId")String uuid, @PathVariable("shape")String shape) throws PlanterException, CustomerException{
-		Planter planter = pService.viewPlanterByShape(uuid,shape);
-		return new ResponseEntity<Planter>(planter,HttpStatus.OK);
+	public ResponseEntity<List<Planter>> getPlanterByShapeHandler(@PathVariable("loginId")String uuid, @PathVariable("shape")String shape) throws PlanterException, CustomerException{
+		List<Planter> planter = pService.viewPlanterByShape(uuid,shape);
+		return new ResponseEntity<List<Planter>>(planter,HttpStatus.OK);
 	}
 	
 	@GetMapping("/{loginId}/planters")
