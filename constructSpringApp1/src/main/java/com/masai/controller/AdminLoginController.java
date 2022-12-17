@@ -65,8 +65,10 @@ public class AdminLoginController {
 
     @PostMapping("/{loginId}/planter")
 	public ResponseEntity<Planter> addPlanterHandler(@PathVariable("loginId")String uuid,@RequestBody Planter planter) throws PlanterException, AdminException{
-		Planter register = pService.addPlanter(uuid, planter);
-		return new ResponseEntity<Planter>(register,HttpStatus.ACCEPTED);
+		
+    	Planter register = pService.addPlanter(uuid, planter);
+		
+    	return new ResponseEntity<Planter>(register,HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping("/{loginId}/planter")
@@ -88,9 +90,9 @@ public class AdminLoginController {
 	}
 	
 	@GetMapping("/{loginId}/planter/{shape}")
-	public ResponseEntity<Planter> getPlanterByShapeHandler(@PathVariable("loginId")String uuid, @PathVariable("shape")String shape) throws PlanterException, AdminException, CustomerException{
-		Planter planter = pService.viewPlanterByShape(uuid,shape);
-		return new ResponseEntity<Planter>(planter,HttpStatus.OK);
+	public ResponseEntity<List<Planter>> getPlanterByShapeHandler(@PathVariable("loginId")String uuid, @PathVariable("shape")String shape) throws PlanterException, AdminException, CustomerException{
+		List<Planter> planter = pService.viewPlanterByShape(uuid,shape);
+		return new ResponseEntity<List<Planter>>(planter,HttpStatus.OK);
 	}
 	
 	@GetMapping("/planters")

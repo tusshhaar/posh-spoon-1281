@@ -17,7 +17,7 @@ public interface PlanterService {
 	
 	public Planter viewPlanter(String uuid,Integer planterId) throws PlanterException,CustomerException;
 	
-	public Planter viewPlanterByShape(String uuid,String planterShape) throws PlanterException,CustomerException;
+	public List<Planter> viewPlanterByShape(String uuid,String planterShape) throws PlanterException,CustomerException;
 	
 	public List<Planter> viewAllPlanters(String uuid) throws PlanterException,CustomerException;
 	

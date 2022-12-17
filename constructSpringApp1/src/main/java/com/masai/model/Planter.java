@@ -24,7 +24,7 @@ public class Planter {
 	private Integer planterColor;
 	private String planterShape;
 	private Integer planterStock;
-	private Integer planterCost;
+	private Double planterCost;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Seed seed;

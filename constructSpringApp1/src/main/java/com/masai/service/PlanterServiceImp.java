@@ -94,36 +94,55 @@ public class PlanterServiceImp implements PlanterService{
 	}
 	
 	@Override
-	public Planter viewPlanterByShape(String uuid, String planterShape) throws PlanterException,CustomerException {
+	public List<Planter> viewPlanterByShape(String uuid, String planterShape) throws PlanterException,CustomerException {
+		
 		AdminCurrentUserSession admin = loginDao.findByAdminUuid(uuid);
+		
 		if(admin==null) {
+			
 			CustomerCurrentUserSession customer = customerLogin.findByCustomerUuid(uuid);
+			
 			if(customer==null) {
+				
 				throw new CustomerException("Nor Logged in as Customer or Admin");
 			}
 		}
-		Optional<Planter> opt =planterDao.findByPlanterShape(planterShape);
+		
+		List<Planter> planters =planterDao.findByPlanterShape(planterShape);
+		
 		Planter updated = null;
-		if(opt.isPresent()) {
-			updated=opt.get();
-			return updated;
-		}else {
+		
+		if(planters.isEmpty()) {
+			
 			throw new PlanterException("Planter not found with shape : "+planterShape);
+			
+			
+		}else {
+			
+			return planters;
+			
 		}
 		
 	}
 
 	@Override
 	public List<Planter> viewAllPlanters(String uuid) throws PlanterException ,CustomerException{
+		
 		AdminCurrentUserSession admin = loginDao.findByAdminUuid(uuid);
+		
 		if(admin==null) {
+			
 			CustomerCurrentUserSession customer = customerLogin.findByCustomerUuid(uuid);
+			
 			if(customer==null) {
+				
 				throw new CustomerException("Nor Logged in as Customer or Admin");
 			}
 		}
 		List<Planter> list = planterDao.findAll();
+		
 		if(list.size()==0) {
+			
 			throw new PlanterException("There are no planters available");
 		}
 		return list;

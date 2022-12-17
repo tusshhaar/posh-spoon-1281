@@ -1,10 +1,14 @@
 package com.masai.exception;
 
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-public class PlanterException extends RuntimeException{
-	public PlanterException(String message) {
-		super(message);
+public class PlanterException extends Exception{
+	
+	public PlanterException() {
+		// TODO Auto-generated constructor stub
 	}
+	public PlanterException(String msg) {
+		super(msg);
+		// TODO Auto-generated constructor stub
+	}
+	
 }
