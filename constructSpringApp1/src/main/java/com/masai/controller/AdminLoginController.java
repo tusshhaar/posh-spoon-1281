@@ -18,11 +18,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import com.masai.exception.AdminLoginException;
+import com.masai.exception.CustomerException;
+import com.masai.exception.SeedException;
+import com.masai.model.AdminLoginDTO;
+import com.masai.model.Customer;
+import com.masai.model.Seed;
+import com.masai.service.AdminLoginService;
+import com.masai.service.SeedServices;
+
 import com.masai.model.AdminLoginDTO;
 import com.masai.model.Customer;
 import com.masai.model.Planter;
 import com.masai.service.AdminLoginService;
 import com.masai.service.PlanterService;
+
 
 import jakarta.validation.Valid;
 
@@ -32,6 +43,10 @@ public class AdminLoginController {
 	
 	@Autowired
 	private AdminLoginService aLoginService;
+
+	@Autowired
+	private SeedServices seedServices;
+
 
 	@Autowired
 	private PlanterService pService;
@@ -62,6 +77,17 @@ public class AdminLoginController {
 		
 		return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
 	}
+
+	
+	@PostMapping("/Seed/{key}")
+	public ResponseEntity<Seed> addSeedHandler(@RequestBody Seed seed, @PathVariable("key") String key) throws SeedException, AdminLoginException{
+		Seed obj=seedServices.addSeed(seed, key);
+		
+		return new ResponseEntity<>(obj,HttpStatus.CREATED);
+		
+	}
+	
+
 
     @PostMapping("/{loginId}/planter")
 	public ResponseEntity<Planter> addPlanterHandler(@PathVariable("loginId")String uuid,@RequestBody Planter planter) throws PlanterException, AdminException{
@@ -148,4 +174,5 @@ public class AdminLoginController {
 	}
 
 	/*---------------------------------------------------------------------**Plant Section End**---------------------------------------------------------------*/
+
 }
