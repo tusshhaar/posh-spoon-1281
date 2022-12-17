@@ -1,11 +1,21 @@
 package com.masai.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Seed {
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer seedId;
 	private String commanName;
 	private String bloomTime;
@@ -17,6 +27,7 @@ public class Seed {
 	private Integer SeedStock;
 	private Double SeedsCost;
 	private Integer SeedPerPacked;
+
 	public Seed(Integer seedId, String commanName, String bloomTime, String watering, String difficultLevel,
 			String temparature, String typeOfSeed, String seedDescription, Integer seedStock, Double seedsCost,
 			Integer seedPerPacked) {
@@ -123,5 +134,6 @@ public class Seed {
 				+ TypeOfSeed + ", SeedDescription=" + SeedDescription + ", SeedStock=" + SeedStock + ", SeedsCost="
 				+ SeedsCost + ", SeedPerPacked=" + SeedPerPacked + "]";
 	}
+
 
 }
