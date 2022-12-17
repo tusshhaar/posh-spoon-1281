@@ -1,7 +1,6 @@
 package com.masai.service;
 
 
-import java.lang.StackWalker.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.exception.AdminLoginException;
-import com.masai.exception.CustomerException;
 import com.masai.exception.SeedException;
 import com.masai.model.AdminCurrentUserSession;
 import com.masai.model.CustomerCurrentUserSession;
@@ -35,11 +33,15 @@ public class SeedServiceImpl implements SeedServices{
 		// TODO Auto-generated method stub
 		
 		AdminCurrentUserSession adminuser=adminrepo.findByAdminUuid(key);
+		
 		if(adminuser==null) {
+			
 			throw new AdminLoginException("please login first");
 		}
 		else {
+			
 			Seed saved =seedDao.save(seed);
+			
 			return saved;
 		}
 			
@@ -65,17 +67,26 @@ public class SeedServiceImpl implements SeedServices{
 	}
 	@Override
 	public Seed deleteSeed(Integer id,String key)throws SeedException,AdminLoginException{
+		
 		AdminCurrentUserSession adminuser=adminrepo.findByAdminUuid(key);
+		
 		if(adminuser==null) {
+			
 			throw new AdminLoginException("admin not found");
+			
 		}
 		else {
+			
 			Optional<Seed> opt=seedDao.findById(id);
+			
 			if(opt.isPresent()) {
+				
 				Seed seedAvailable=opt.get();
 				return seedAvailable;
+				
 			}
 			else
+				
 			throw new SeedException("student not found that exception : "+id);
 		}
 		
@@ -139,27 +150,31 @@ public class SeedServiceImpl implements SeedServices{
 	}
 
 	@Override
-	public List<Seed> viewAllSeeds(String TypeOfSeed,String key) throws SeedException, AdminLoginException{
+	public List<Seed> viewAllSeeds(String TypeOfSeed, String key) throws SeedException, AdminLoginException{
 		
 		
 		CustomerCurrentUserSession c1=customer.findByCustomerUuid(key);
+		
 		if(c1==null) {
+			
 			AdminCurrentUserSession admin1=adminrepo.findByAdminUuid(key);
+			
 			if(admin1==null) {
+				
 				throw new AdminLoginException("user not found ");
 			}
 		}
 		
-		
-		// TODO Auto-generated method stub
-		
 		List<Seed> seed=seedDao.findByTypeOfSeed(TypeOfSeed);
+		
 		if(seed!=null) {
+			
 			return seed;
 		}
-		else {
+		else 
+			
 		throw new SeedException("no seed available by that name type");	
-		}
+		
 	}
 
 }

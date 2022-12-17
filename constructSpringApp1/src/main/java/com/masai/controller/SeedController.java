@@ -28,8 +28,8 @@ public class SeedController {
 	@Autowired
 	SeedServices seedServices;
 	
-	@Autowired
-	AdminCurrentUserSession adminUser;
+//	@Autowired
+//	AdminCurrentUserSession adminUser;
 	
 	
 	@PostMapping("/seed/{key}")
