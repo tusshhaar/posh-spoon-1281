@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css" />
+    <title>Rocker | Plant</title>
+</head>
+
+<body>
+    <div class="menu_div">
+        <label for="check" id="menu">
+            <i class="fa-solid fa-bars"></i>
+            <input type="checkbox" id="check" onclick="checkfun()">
+        </label>
+    </div>
+    <div id=navbar>
+        <div id="name_log">
+            <img class="text_logo" src="/R.png" alt="">
+            <div id="textDiv">
+                <span class="textRocker" id="textRocker"></span>
+            </div>
+        </div>
+        <div id="navbarData1">
+            <span id="loginId1"></span>
+            <li> <a href="#signup" onclick="cencelS()" id="s1">SignUp</a> </li>
+            <li> <a href="#login" onclick="cencelL()" id="l1">Login</a> </li>
+        </div>
+    </div>
+    <div id="slide_menu" id="navbarData2">
+        <div id="cencel" onclick="cencel()"><i class="fa-solid fa-xmark"></i></div>
+        <span id="loginId2"></span>
+        <li> <a href="#signup" onclick="cencelS()" id="s2">Signup</a> </li>
+        <li> <a href="#login" onclick="cencelL()" itemid="l2">Login</a> </li>
+    </div>
+
+
+    <div id="signup">
+        <div class="header">
+            <label for="" class="signupHeading">SignUp</label>
+            <span onclick="signupHide()" class="quitter">&#128473;</span>
+        </div>
+        <hr>
+        <form type="submit" class="signupForm" id="signupForm" method="POST">
+            <div>
+                <label for="" class="classTitle">Customer</label>
+                <label for="">Customer Name </label>
+                <input type="text" placeholder="Enter Customer Name" class="cName" id="cName">
+                <label for="">Customer Email </label>
+                <input type="email" placeholder="Enter Customer Email" class="cEmail" id="cEmail">
+                <label for="">Customer User-Name</label>
+                <input type="text" placeholder="Enter Customer User-Name" class="cUser" id="cUser">
+                <label for="">Customer Password</label>
+                <input type="password" placeholder="Enter Customer Password" class="cPass" id="cPass">
+                <input type="submit" value="Submit" id="signupButton">
+            </div>
+            <div>
+                <label for="" class="classTitle">Address</label>
+                <label for="">House Number</label>
+                <input type="number" placeholder="Dont use /,-,# Enter just number" class="cHouse" id="cHouse">
+                <label for="">Colony</label>
+                <input type="text" placeholder="Enter Customer's Colony " class="cColony" id="cColony">
+                <label for="">City</label>
+                <input type="text" placeholder="Enter Customer's City" class="cCity" id="cCity">
+                <label for="">State</label>
+                <input type="text" placeholder="Enter Customer's State" class="cState" id="cState">
+                <label for="">Pincode </label>
+                <input type="number" placeholder="Enter Customer's Area Pincode" class="cPin" id="cPin">
+            </div>
+        </form>
+    </div>
+    <div id="login">
+        <div class="header">
+            <label for="" class="loginHeading">Login</label>
+            <span onclick="loginHide()" class="quitter">&#128473;</span>
+        </div>
+        <hr>
+        <form type="submit" class="loginForm" id="formLogin">
+            <div class="toggleButton">
+                <div onclick="changeToAdmin()" id="adminToggle" class="adminToggle">Admin</div>
+                <div onclick="changeToCustomer()" id="customerToggle" class="customerToggle">Customer</div>
+            </div>
+            <div id="loginData">
+                <label for=""> <span id="toggleU">Admin</span> UserName </label>
+                <input required type="text" placeholder="Enter User-Name Name" class="userName">
+                <label for=""> <span id="toggleP">Admin</span> Password</label>
+                <input required type="password" placeholder="Enter Password" class="userPass">
+                <input type="submit" value="Login" id="loginButton">
+            </div>
+        </form>
+    </div>
+    <div class="adminToggle1">
+        <div onclick="changeToColor()" id="planterToggle" class="planterToggle">Planter</div>
+        <div onclick="changeToColor()" id="plantToggle" class="plantToggle">Plant</div>
+        <div onclick="changeToColor()" id="seedToggle" class="seedToggle">Seed</div>
+        <div onclick="changeToColor()" id="orderToggle" class="orderToggle">Order</div>
+        <div onclick="changeToColor()" id="profileToggle" class="profileToggle">Profile</div>
+    </div>
+    <div class="customerToggle1">
+        <div onclick="changeToColor()" id="planterToggle" class="planterToggle">Planter</div>
+        <div onclick="changeToColor()" id="plantToggle" class="plantToggle">Plant</div>
+        <div onclick="changeToColor()" id="seedToggle" class="seedToggle">Seed</div>
+        <div onclick="changeToColor()" id="orderToggle" class="orderToggle">Order</div>
+        <div onclick="changeToColor()" id="profileToggle" class="profileToggle">Profile</div>
+    </div>
+
+
+    <!-- Planter Section -->
+
+    <div id="containerPlanter" class="container">
+        <div id="sideMethods" class="sideMethods">
+            <div onclick="addPlanterFun(1)">Add Planter</div>
+            <div onclick="addPlanterFun(2)">Update Planter</div>
+            <div onclick="addPlanterFun(3)">Delete Planter</div>
+            <div onclick="addPlanterFun(4)">Get Planter By Id</div>
+            <div onclick="addPlanterFun(5)">Get Planter By Shape</div>
+            <div onclick="addPlanterFun(6)">Get All Planters</div>
+            <div onclick="addPlanterFun(7)">Get Planter By Cost Range</div>
+        </div>
+        <div id="content" class="content">
+            <div id="addPlanterData" class="contentData">
+                <h1>Add Planter</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="addPlanterForm" class="requestForm">
+                    <input type="number" placeholder="Planter Height" id="Pheight">
+                    <input type="number" placeholder="Planter Capacity" id="Pcapacity">
+                    <input type="number" placeholder="Planter Holes" id="Pholes">
+                    <input type="text" placeholder="Planter Color" id="Pcolor">
+                    <input type="text" placeholder="Planter Shape" id="Pshape">
+                    <input type="number" placeholder="Planter Stock" id="Pstock">
+                    <input type="number" placeholder="Planter Cost" id="Pcost">
+                    <input type="submit" value="Add Planter" class="methodButton">
+                </form>
+            </div>
+            <div id="updatePlanterData" class="contentData">
+                <h1>Update Planter Data</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="updatePlanterForm" class="requestForm">
+                    <input type="number" placeholder="Planter Id" id="Pid">
+                    <input type="number" placeholder="Planter Height" id="Pheight">
+                    <input type="number" placeholder="Planter Capacity" id="Pcapacity">
+                    <input type="number" placeholder="Planter Holes" id="Pholes">
+                    <input type="text" placeholder="Planter Color" id="Pcolor">
+                    <input type="text" placeholder="Planter Shape" id="Pshape">
+                    <input type="number" placeholder="Planter Stock" id="Pstock">
+                    <input type="number" placeholder="Planter Cost" id="Pcost">
+                    <input type="submit" value="Update Planter" class="methodButton">
+                </form>
+            </div>
+            <div id="deletePlanterData" class="contentData">
+                <h1>Delete Planter </h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="deletePlanterForm" class="requestForm">
+                    <input type="number" placeholder="Planter Id" id="Pid">
+                    <input type="submit" value="Delete Planter" class="methodButton">
+                </form>
+            </div>
+            <div id="getPlanterById" class="contentData">
+                <h1>Get Planter By Id</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="getPlanterByIdForm" class="requestForm">
+                    <input type="number" placeholder="Planter Id" id="Pid">
+                    <input type="submit" value="Get Planter" class="methodButton">
+                </form>
+            </div>
+            <div id="getPlanterByShape" class="contentData">
+                <h1>Get Planter By Shape</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="getPlanterByShapeForm" class="requestForm">
+                    <input type="text" placeholder="Planter Shape" id="Pshape">
+                    <input type="submit" value="Get Planter" class="methodButton">
+                </form>
+            </div>
+            <div id="getPlanters" class="contentData">
+                <h1>Get All Planters</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="getPlantersForm" class="requestForm">
+                    <input type="submit" value="Get Planters" class="methodButton">
+                </form>
+            </div>
+            <div id="getPlanterByCostRange" class="contentData">
+                <h1>Get Planter By Cost Range</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="deletePlanterForm" class="requestForm">
+                    <input type="number" placeholder="Planter Minimum Cost" id="minCost">
+                    <input type="number" placeholder="Planter Maximum Cost" id="minCost">
+                    <input type="submit" value="Get Planters" class="methodButton">
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Plant Section -->
+
+    <div id="containerPlant" class="container">
+        <div class="sideMethods">
+            <div onclick="addPlanterFun(1)">Add Planter</div>
+            <div onclick="addPlanterFun(2)">Update Planter</div>
+            <div onclick="addPlanterFun(3)">Delete Planter</div>
+            <div onclick="addPlanterFun(4)">Get Planter By Id</div>
+            <div onclick="addPlanterFun(5)">Get Planter By Shape</div>
+            <div onclick="addPlanterFun(6)">Get All Planters</div>
+            <div onclick="addPlanterFun(7)">Get Planter By Cost Range</div>
+        </div>
+        <div class="content">
+            <div id="addPlantData" class="contentData">
+                <h1>Add Plant</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="addPlanterForm">
+                    <input type="number" placeholder="Plant Height">
+                    <input type="text" placeholder="Plant Spread">
+                    <input type="text" placeholder="Plant Common Name">
+                    <input type="text" placeholder="Plant Bloom Time">
+                    <input type="text" placeholder="Plant medicinal">
+                    <input type="text" placeholder="Plant Difficulty Level">
+                    <input type="text" placeholder="Plant Temperature">
+                    <input type="text" placeholder="Type Of Plant">
+                    <input type="text" placeholder="Plant Description">
+                    <input type="number" placeholder="Plant Stock">
+                    <input type="number" placeholder="Plant Cost">
+                    <input type="submit" value="Get Planters" class="methodButton">
+                </form>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+    <!-- Seed Section -->
+
+
+
+
+    <div id="content1">
+        <div id="contentAdmin">
+            <div id="addPlanter">
+                <h1>Add Planter</h1>
+                <div id="addPlanterData">
+                    <h4>Planter Details</h4>
+                    <input type="number" placeholder="Planter Height">
+                    <input type="number" placeholder="Planter Capacity">
+                    <input type="number" placeholder="Planter Holes">
+                    <input type="text" placeholder="Planter Color">
+                    <input type="text" placeholder="Planter Shape">
+                    <input type="number" placeholder="Planter Stock">
+                    <input type="number" placeholder="Planter Cost">
+                </div>
+                <div id="addPlantData">
+                    <h4>Plant Details</h4>
+                    <input type="number" placeholder="Plant Height">
+                    <input type="text" placeholder="Plant Spread">
+                    <input type="text" placeholder="Plant Common Name">
+                    <input type="text" placeholder="Plant Bloom Time">
+                    <input type="text" placeholder="Plant medicinal">
+                    <input type="text" placeholder="Plant Difficulty Level">
+                    <input type="text" placeholder="Plant Temperature">
+                    <input type="text" placeholder="Type Of Plant">
+                    <input type="text" placeholder="Plant Description">
+                    <input type="number" placeholder="Plant Stock">
+                    <input type="number" placeholder="Plant Cost">
+                </div>
+                <div id="addSeedData">
+                    <h4>Seed details</h4>
+                    <input type="text" placeholder="Seed Common Name">
+                    <input type="text" placeholder="Seed Bloom Time">
+                    <input type="text" placeholder="Seed Watering">
+                    <input type="text" placeholder="Seed Difficulty Level">
+                    <input type="text" placeholder="Seed Temperature">
+                    <input type="text" placeholder="Type Of Seeds">
+                    <input type="text" placeholder="Seeds Description">
+                    <input type="number" placeholder="Seed Stock">
+                    <input type="number" placeholder="Seed Cost">
+                    <input type="number" placeholder="Seeds Per Packet">
+                </div>
+            </div>
+            <div id="updatePlanter">
+                <h1>Update Planter</h1>
+
+                <div id="addPlanterData">
+                    <h4>Planter Details</h4>
+                    <input type="number" placeholder="Planter Height">
+                    <input type="number" placeholder="Planter Capacity">
+                    <input type="number" placeholder="Planter Holes">
+                    <input type="text" placeholder="Planter Color">
+                    <input type="text" placeholder="Planter Shape">
+                    <input type="number" placeholder="Planter Stock">
+                    <input type="number" placeholder="Planter Cost">
+                </div>
+                <div id="addPlantData">
+                    <h4>Plant Details</h4>
+                    <input type="number" placeholder="Plant Height">
+                    <input type="text" placeholder="Plant Spread">
+                    <input type="text" placeholder="Plant Common Name">
+                    <input type="text" placeholder="Plant Bloom Time">
+                    <input type="text" placeholder="Plant medicinal">
+                    <input type="text" placeholder="Plant Difficulty Level">
+                    <input type="text" placeholder="Plant Temperature">
+                    <input type="text" placeholder="Type Of Plant">
+                    <input type="text" placeholder="Plant Description">
+                    <input type="number" placeholder="Plant Stock">
+                    <input type="number" placeholder="Plant Cost">
+                </div>
+                <div id="addSeedData">
+                    <h4>Seed details</h4>
+                    <input type="text" placeholder="Seed Common Name">
+                    <input type="text" placeholder="Seed Bloom Time">
+                    <input type="text" placeholder="Seed Watering">
+                    <input type="text" placeholder="Seed Difficulty Level">
+                    <input type="text" placeholder="Seed Temperature">
+                    <input type="text" placeholder="Type Of Seeds">
+                    <input type="text" placeholder="Seeds Description">
+                    <input type="number" placeholder="Seed Stock">
+                    <input type="number" placeholder="Seed Cost">
+                    <input type="number" placeholder="Seeds Per Packet">
+                </div>
+            </div>
+        </div>
+        <h1>sdf</h1>
+        <h1>sdf</h1>
+        <h1>sdf</h1>
+        <h1>sdf</h1>
+        <h1>sdf</h1>
+        <h1>sdf</h1>
+        <h1>sdf</h1>
+        <h1>sdf</h1>
+
+</body>
+
+</html>
+
+<script src="index.js"></script>

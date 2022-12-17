@@ -42,6 +42,4 @@ public class Seed {
 	private Double seedsCost;
 	@NotNull(message = "Seed Per Packed should not be null")
 	private Integer seedPerPacked;
-
-
 }
