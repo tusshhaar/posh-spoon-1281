@@ -35,7 +35,8 @@ public class Customer {
 	@NotEmpty
 	@Size(min = 4, max=10, message = "customer password should contains the minimum 4 and maximum 10 chars !!")
 	private String customerPassword;
-	@NotEmpty(message =  "Address is mandatory")
+
+	//@NotEmpty(message =  "Address is mandatory")
 	@Embedded
 	private Address address;
 	
