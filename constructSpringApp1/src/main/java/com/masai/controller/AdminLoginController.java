@@ -56,7 +56,7 @@ public class AdminLoginController {
 	
 	// Admin Login-----------------------------
 	
-	@GetMapping("/login")
+	@PutMapping("/login")
 	public ResponseEntity<String> adminLogin(@RequestBody AdminLoginDTO loginDTO) throws AdminLoginException{
 		
 		String str = aLoginService.adminLoginDTO(loginDTO);
