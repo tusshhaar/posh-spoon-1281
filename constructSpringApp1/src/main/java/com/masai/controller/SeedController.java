@@ -23,32 +23,26 @@ import com.masai.model.Seed;
 import com.masai.service.SeedServices;
 
 @RestController
+@RequestMapping("/seed")
 public class SeedController {
 
 	@Autowired
 	SeedServices seedServices;
 	
-//	@Autowired
-//	AdminCurrentUserSession adminUser;
-	
-	
-	@PostMapping("/seed/{key}")
-	public ResponseEntity<Seed> addSeed(@RequestBody Seed seed, @PathVariable("key") String key) throws SeedException, AdminLoginException{
-	 Seed seed2=	seedServices.addSeed(seed,key);
-		return new ResponseEntity<>(seed2,HttpStatus.CREATED);
+	@GetMapping("/id/{id}/{key}")
+	public ResponseEntity<Seed> getSeedById(@PathVariable("id") Integer id,@PathVariable("key") String key) throws SeedException, AdminLoginException{
 		
-	}
-	
-	@GetMapping("/get/{id}/{key}")
-	public ResponseEntity<Seed> getSeedByRoll(@PathVariable("id") Integer id,@PathVariable("key") String key) throws SeedException, AdminLoginException{
 		Seed seed=seedServices.viewSeed(id,key);
+		
 		return new ResponseEntity<Seed>(seed,HttpStatus.OK);
 		
 	}
 	
-	@GetMapping("/getAll/{key}")
+	@GetMapping("/seeds/{key}")
 	public ResponseEntity<List<Seed>> getAllSeed(@PathVariable("key")String key) throws SeedException, AdminLoginException{
+		
 		List<Seed> list=seedServices.viewAllSeeds(key);
+		
 		return new ResponseEntity<List<Seed>>(list,HttpStatus.OK);
 		
 	}
@@ -56,17 +50,21 @@ public class SeedController {
 	
 
 	
-	@GetMapping("/byName/{name}/{key}")
+	@GetMapping("/name/{name}/{key}")
 	public ResponseEntity<Seed> byName(@PathVariable("name") String name,@PathVariable("key") String key) throws SeedException, AdminLoginException{
 		
-	Seed seed=seedServices.viewSeed(name,key);
-	return new ResponseEntity<Seed>(seed,HttpStatus.OK);
+	
+		Seed seed=seedServices.viewSeed(name,key);
+	
+		return new ResponseEntity<Seed>(seed,HttpStatus.OK);
 	
 	}
 	
-	@GetMapping("/byType/{type}/{key}")
+	@GetMapping("/type/{type}/{key}")
 	public ResponseEntity<List<Seed>>byType(@PathVariable("type") String name, @PathVariable("key") String key) throws SeedException, AdminLoginException{
+		
 		List<Seed> seed=seedServices.viewAllSeeds(name,key);
+		
 		return new ResponseEntity<List<Seed>>(seed,HttpStatus.OK);
 		
 	}
