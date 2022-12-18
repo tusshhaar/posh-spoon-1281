@@ -81,7 +81,7 @@ public class CustomerController {
 	}
 
 	
-	@GetMapping("/seedWithPlanter/{seed}/{key}")
+	@GetMapping("/planterseed/{seed}/{key}")
 	public ResponseEntity<List<Planter>> getPlanterWithSeed(@PathVariable("seed") String seed, @PathVariable("key") String key) throws OrderException, CustomerException, PlanterException{
 		
 		List<Planter> planters = iService.findSeedWithPlanter(seed, key);
@@ -89,7 +89,7 @@ public class CustomerController {
 		return new ResponseEntity<List<Planter>>(planters, HttpStatus.OK);
 	}
 	
-	@PostMapping("/planterWithSeed/buy/{planterId}/{key}")
+	@PostMapping("/planterseed/buy/{planterId}/{key}")
 	public ResponseEntity<String> buyPlanterWithSeed(@RequestBody ItemOrder order, @PathVariable("key") String key, @PathVariable("planterId") Integer planterId) throws CustomerException, PlanterException{
 		
 		String str = iService.buyPlanterWithSeed(order, key, planterId);
@@ -98,31 +98,7 @@ public class CustomerController {
 
 	}
 	
-	@PostMapping("/planterByShapeAndId/{planterId}/{shape}/{key}")
-	public ResponseEntity<String> buyPlanterByShape(ItemOrder order, @PathVariable("key") String key,@PathVariable("shape") String shape, @PathVariable("planterId") Integer planterId) throws CustomerException, PlanterException{
-		
-		String planters = iService.buyPlanterBYShapeAndId(order, key, shape, planterId);
-		
-		return new ResponseEntity<String>(planters, HttpStatus.OK);
-	}
-	
-	@GetMapping("plantName/{name}/{key}")
-	public ResponseEntity<List<Plant>> buyPlantByCommonName(@PathVariable("key") String key, @PathVariable("name") String name) throws CustomerException, PlanterException{
-		
-		List<Plant> plants = iService.viewPlantByName(key, name);
-		
-		return new ResponseEntity<List<Plant>>(plants, HttpStatus.OK);
-	}
-	
-	@PutMapping("/seed/buy/{name}/{key}")
-	public ResponseEntity<String> buySeedWithName(@RequestBody ItemOrder order, @PathVariable("name") String name, @PathVariable("key") String key) throws CustomerException, SeedException{
-		
-		String str = iService.buySeedWithName(order, name, key);
-		
-		return new ResponseEntity<String>(str, HttpStatus.ACCEPTED);
-	}
-	
-	@PutMapping("/planter/buy/{planterId}/{shape}/{key}")
+	@PutMapping("/plantershapeid/buy/{planterId}/{shape}/{key}")
 	public ResponseEntity<String> buyPlanterBYShapeAndId(@RequestBody ItemOrder order, @PathVariable("key") String key, @PathVariable("shape") String shape, @PathVariable("planterId") Integer planterId) throws CustomerException, PlanterException {
 		
 		String str = iService.buyPlanterBYShapeAndId(order, key, shape, planterId);
@@ -130,7 +106,43 @@ public class CustomerController {
 		return new ResponseEntity<String>(str, HttpStatus.OK);
 		
 		
+	} 
+	
+	
+	
+	
+	
+	@GetMapping("plant/{name}/{key}")
+	public ResponseEntity<List<Plant>> viewPlantByCommonName(@PathVariable("key") String key, @PathVariable("name") String name) throws CustomerException, PlanterException{
+		
+		List<Plant> plants = iService.viewPlantByName(key, name);
+		
+		return new ResponseEntity<List<Plant>>(plants, HttpStatus.OK);
 	}
+	
+	@PostMapping("plant/buy/{name}/{id}/{key}")
+	public ResponseEntity<String> buyPlantWithNameAndId(@RequestBody ItemOrder order, @PathVariable("name") String name, @PathVariable("id") Integer id, @PathVariable("key") String key) throws CustomerException, PlanterException{
+		
+		String str = iService.buyPlantWithNameAndId(order, name, id, key);
+		
+		return new ResponseEntity<String>(str, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	@PostMapping("/seedname/buy/{name}/{key}")
+	public ResponseEntity<String> buySeedWithName(@RequestBody ItemOrder order, @PathVariable("name") String name, @PathVariable("key") String key) throws CustomerException, SeedException{
+		
+		String str = iService.buySeedWithName(order, name, key);
+		
+		return new ResponseEntity<String>(str, HttpStatus.ACCEPTED);
+	}
+	
+	
+	
+
 	
 	@GetMapping("/cart/{key}")
 	public ResponseEntity<Cart> viewCart(@PathVariable("key") String key) throws OrderException{

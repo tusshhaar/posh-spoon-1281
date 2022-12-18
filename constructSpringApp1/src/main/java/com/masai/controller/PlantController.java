@@ -1,6 +1,8 @@
 package com.masai.controller;
 
+import com.masai.exception.CustomerException;
 import com.masai.exception.PlantNotFoundException;
+import com.masai.exception.PlanterException;
 import com.masai.model.Plant;
 import com.masai.service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/plant")
 public class PlantController {
 
     @Autowired
@@ -20,10 +23,10 @@ public class PlantController {
 
     // View plant by Plant Id
 
-    @GetMapping("/plants/{id}")
-    public ResponseEntity<Plant> viewPlantByIdHandler(@PathVariable("id") Integer plantId) throws PlantNotFoundException {
+    @GetMapping("/{id}/{key}")
+    public ResponseEntity<Plant> viewPlantByIdHandler(@PathVariable("id") Integer plantId, @PathVariable("key") String key) throws PlantNotFoundException, CustomerException, PlanterException {
 
-        Plant plant = pService.viewPlantById(plantId);
+        Plant plant = pService.viewPlantById(plantId,key);
 
         return new ResponseEntity<Plant>(plant, HttpStatus.OK);
 
@@ -32,7 +35,7 @@ public class PlantController {
 
     // Find Plant by Plant name
 
-    @GetMapping("/plant/{name}")
+    @GetMapping("/name/{name}")
     public ResponseEntity<List<Plant>> viewPlantByPlantNameHandler(@PathVariable("name") String name)
             throws PlantNotFoundException {
 
@@ -54,8 +57,8 @@ public class PlantController {
     }
 
     // View plants by plantType
-    @GetMapping("/getplants/{plant_type}")
-    public ResponseEntity<List<Plant>> viewPlantsByPlantTypeHandler(@PathVariable("plant_type") String type)
+    @GetMapping("/type/{type}")
+    public ResponseEntity<List<Plant>> viewPlantsByPlantTypeHandler(@PathVariable("type") String type)
             throws PlantNotFoundException {
 
         List<Plant> list = pService.viewPlantsByPlantType(type);

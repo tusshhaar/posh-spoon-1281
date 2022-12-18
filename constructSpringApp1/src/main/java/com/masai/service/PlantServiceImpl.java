@@ -2,10 +2,15 @@ package com.masai.service;
 
 
 import com.masai.exception.AdminLoginException;
+import com.masai.exception.CustomerException;
 import com.masai.exception.PlantNotFoundException;
+import com.masai.exception.PlanterException;
 import com.masai.model.AdminCurrentUserSession;
+import com.masai.model.CustomerCurrentUserSession;
 import com.masai.model.Plant;
+import com.masai.model.Planter;
 import com.masai.repository.AdminSessionRepo;
+import com.masai.repository.CustomerSessionRepo;
 import com.masai.repository.PlantDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +27,9 @@ public class PlantServiceImpl implements PlantService {
 
 	@Autowired
 	private AdminSessionRepo adminSessionRepo;
+	
+	@Autowired
+	private CustomerSessionRepo cRepo;
 
 	@Override
 	public Plant addPlant(Plant plant, String key) throws AdminLoginException {
@@ -79,8 +87,36 @@ public class PlantServiceImpl implements PlantService {
 	}
 
 	@Override
-	public Plant viewPlantById(Integer plantId) throws PlantNotFoundException {
-
+	public Plant viewPlantById(Integer plantId,String uuid) throws PlantNotFoundException, CustomerException, PlanterException {
+		
+           AdminCurrentUserSession admin = adminSessionRepo.findByAdminUuid(uuid);
+		
+		if(admin==null) {
+			
+			CustomerCurrentUserSession customer = cRepo.findByCustomerUuid(uuid);
+			
+			if(customer==null) {
+				
+				throw new CustomerException("Please provide valid key");
+				
+			}else {
+				
+				Optional<Plant> optional = pdao.findById(plantId);
+				
+				if(optional.isPresent()) {
+					
+					Plant plant = optional.get();
+					
+					return plant;
+					
+				}else
+					
+					throw new PlanterException("No plant is found with id :"+plantId);
+			}
+				
+				
+		}
+		
 		Optional<Plant> plant = pdao.findById(plantId);
 
 		if (plant.isPresent()) {
@@ -88,8 +124,11 @@ public class PlantServiceImpl implements PlantService {
 			return plant.get();
 
 		} else {
+			
 			throw new PlantNotFoundException("Plant does not exist with this Plant Id :"+plantId);
 		}
+
+		
 	}
 
 	@Override
