@@ -188,7 +188,7 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 					
 					order.setLocalDateTime(LocalDateTime.now());
 					
-					order.setTotalCost(planter.getPlanterCost()*order.getQuantity());
+					order.setTotalCost(planter.getPlanterCost()*order.getQuantity());;
 					
 					planter.setPlanterStock(planter.getPlanterStock() - order.getQuantity());
 					
