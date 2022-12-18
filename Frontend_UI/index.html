@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://kit.fontawesome.com/b87712823b.js" crossorigin="anonymous"></script>
+    <title>Rocker | Plant</title>
+</head>
+
+<body>
+    <div class="menu_div">
+        <label for="check" id="menu">
+            <i class="fa-solid fa-bars"></i>
+            <input type="checkbox" id="check" onclick="checkfun()">
+        </label>
+    </div>
+    <div id=navbar>
+        <div id="name_log">
+            <img class="text_logo" src="R.png" alt="">
+            <div id="textDiv">
+                <span class="textRocker" id="textRocker"></span>
+            </div>
+        </div>
+        <div id="navbarData1">
+            <span id="loginId1" class="navbarTitleChangers"></span>
+            <span id="logout1" onclick="logout()" class="navbarTitleChangers"></span>
+            <li> <a href="#signup" onclick="cencelS()" id="s1">SignUp</a> </li>
+            <li> <a href="#login" onclick="cencelL()" id="l1">Login</a> </li>
+        </div>
+    </div>
+    <div id="slide_menu" id="navbarData2">
+        <div id="cencel" onclick="cencel()"><i class="fa-solid fa-xmark"></i></div>
+        <span id="loginId2" class="navbarTitleChangers"></span>
+        <span id="logout2" onclick="logout()" class="navbarTitleChangers"></span>
+        <li> <a href="#signup" onclick="cencelS()" id="s2">Signup</a> </li>
+        <li> <a href="#login" onclick="cencelL()" id="l2">Login</a> </li>
+    </div>
+
+
+    <div id="signup">
+        <div class="header">
+            <label for="" class="signupHeading">SignUp</label>
+            <span onclick="signupHide()" class="quitter">&#128473;</span>
+        </div>
+        <hr>
+        <form type="submit" class="signupForm" id="signupForm" method="POST">
+            <div>
+                <label for="" class="classTitle">Customer</label>
+                <label for="">Customer Name </label>
+                <input type="text" placeholder="Enter Customer Name" class="cName" id="cName">
+                <label for="">Customer Email </label>
+                <input type="email" placeholder="Enter Customer Email" class="cEmail" id="cEmail">
+                <label for="">Customer User-Name</label>
+                <input type="text" placeholder="Enter Customer User-Name" class="cUser" id="cUser">
+                <label for="">Customer Password</label>
+                <input type="password" placeholder="Enter Customer Password" class="cPass" id="cPass">
+                <input type="submit" value="Submit" id="signupButton">
+            </div>
+            <div>
+                <label for="" class="classTitle">Address</label>
+                <label for="">House Number</label>
+                <input type="number" placeholder="Dont use /,-,# Enter just number" class="cHouse" id="cHouse">
+                <label for="">Colony</label>
+                <input type="text" placeholder="Enter Customer's Colony " class="cColony" id="cColony">
+                <label for="">City</label>
+                <input type="text" placeholder="Enter Customer's City" class="cCity" id="cCity">
+                <label for="">State</label>
+                <input type="text" placeholder="Enter Customer's State" class="cState" id="cState">
+                <label for="">Pincode </label>
+                <input type="number" placeholder="Enter Customer's Area Pincode" class="cPin" id="cPin">
+            </div>
+        </form>
+    </div>
+    <div id="login">
+        <div class="header">
+            <label for="" class="loginHeading">Login</label>
+            <span onclick="loginHide()" class="quitter">&#128473;</span>
+        </div>
+        <hr>
+        <form type="submit" class="loginForm" id="loginForm" method="PUT">
+            <div class="toggleButton">
+                <div onclick="changeToAdmin()" id="adminToggle" class="adminToggle">Admin</div>
+                <div onclick="changeToCustomer()" id="customerToggle" class="customerToggle">Customer</div>
+            </div>
+            <div id="loginData">
+                <label for=""> <span id="toggleU">Admin</span> UserName </label>
+                <input required type="text" placeholder="Enter User-Name Name" class="userName" id="LoginUserName">
+                <label for=""> <span id="toggleP">Admin</span> Password</label>
+                <input required type="password" placeholder="Enter Password" class="userPass" id="LoginUserPass">
+                <input type="submit" value="Login" id="loginButton">
+            </div>
+        </form>
+    </div>
+
+
+
+<!-- Mobile view from here only for navbara -->
+
+    <div id="mobile_view">
+        <label for="check_mobile">
+        <input type="checkbox" name="check" id="check_mobile" class="check_mobile" onclick="mobileView()">
+        <i class="fa-solid fa-bars"></i>
+    </label>
+    <!-- this script is only for mobile menu -->
+    <script>
+    function mobileView(){
+        document.getElementById("mobile_navbar").style.top="0%"
+    }
+    function cencle_mobile_view(){
+        document.getElementById("mobile_navbar").style.top="-100%"
+    }
+        </script>
+
+    </div>
+
+    <div id="mobile_navbar" class="mobile_navbar">
+        <i class="fa-sharp fa-solid fa-xmark" onclick="cencle_mobile_view()" id="mobile_nav_cencel"></i>
+        <button class="mobile_button" onclick="cencelS()">SignUp</button>
+        <button class="mobile_button" onclick="cencelL()">Login</button>
+    </div>
+
+    <!-- this above code is only for mobile screen -->
+
+
+
+
+
+
+<!-- Admin Section -->
+<div id="Admin">
+    <div class="adminToggle1" id="admintoggle1">
+        <div onclick="changeToColor(1)" id="planterToggle" class="planterToggle">Planter</div>
+        <div onclick="changeToColor(2)" id="plantToggle" class="plantToggle">Plant</div>
+        <div onclick="changeToColor(3)" id="seedToggle" class="seedToggle">Seed</div>
+    </div>
+    <!-- Planter Section -->
+    <div id="acontainerPlanter" class="container">
+        <div  class="sideMethods">
+            <div onclick="addPlanterFun1(1)">Add Planter</div>
+            <div onclick="addPlanterFun1(2)">Update Planter</div>
+            <div onclick="addPlanterFun1(3)">Delete Planter</div>
+            <div onclick="addPlanterFun1(4)">Get Planter By Id</div>
+            <div onclick="addPlanterFun1(5)">Get Planter By Shape</div>
+            <div onclick="addPlanterFun1(6)">Get All Planters</div>
+            <div onclick="addPlanterFun1(7)">Get Planter By Cost Range</div>
+        </div>
+        <div id="contentPlanter" class="content">
+            <div id="addPlanterData" class="contentData">
+                <h1>Add Planter</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="addPlanterForm" class="requestForm">
+                    <input type="number" placeholder="Planter Height" id="addPheight">
+                    <input type="number" placeholder="Planter Capacity" id="addPcapacity">
+                    <input type="number" placeholder="Planter Holes" id="addPholes">
+                    <input type="text" placeholder="Planter Color" id="addPcolor">
+                    <input type="text" placeholder="Planter Shape" id="addPshape">
+                    <input type="number" placeholder="Planter Stock" id="addPstock">
+                    <input type="number" placeholder="Planter Cost" id="addPcost">
+                    <input type="submit" value="Add Planter" class="methodButton">
+                </form>
+            </div>
+            <div id="updatePlanterData" class="contentData">
+                <h1>Update Planter Data</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="updatePlanterForm" class="requestForm">
+                    <input type="number" placeholder="Planter Id" id="uPid">
+                    <input type="number" placeholder="Planter Height" id="uPheight">
+                    <input type="number" placeholder="Planter Capacity" id="uPcapacity">
+                    <input type="number" placeholder="Planter Holes" id="uPholes">
+                    <input type="text" placeholder="Planter Color" id="uPcolor">
+                    <input type="text" placeholder="Planter Shape" id="uPshape">
+                    <input type="number" placeholder="Planter Stock" id="uPstock">
+                    <input type="number" placeholder="Planter Cost" id="uPcost">
+                    <input type="submit" value="Update Planter" class="methodButton">
+                </form>
+            </div>
+            <div id="deletePlanterData" class="contentData">
+                <h1>Delete Planter </h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="deletePlanterForm" class="requestForm">
+                    <input type="number" placeholder="Planter Id" id="dPid">
+                    <input type="submit" value="Delete Planter" class="methodButton">
+                </form>
+            </div>
+            <div id="agetPlanterById" class="contentData">
+                <h1>Get Planter By Id</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="agetPlanterByIdForm" class="requestForm">
+                    <input type="number" placeholder="Planter Id" id="agPid">
+                    <input type="submit" value="Get Planter" class="methodButton">
+                </form>
+            </div>
+            <div id="agetPlanterByShape" class="contentData">
+                <h1>Get Planter By Shape</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="agetPlanterByShapeForm" class="requestForm">
+                    <input type="text" placeholder="Planter Shape" id="asPshape">
+                    <input type="submit" value="Get Planter" class="methodButton">
+                </form>
+            </div>
+            <div id="agetPlanters" class="contentData">
+                <h1>Get All Planters</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="agetPlantersForm" class="requestForm">
+                    <input type="submit" value="Get Planters" class="methodButton">
+                </form>
+            </div>
+            <div id="agetPlanterByCostRange" class="contentData">
+                <h1>Get Planter By Cost Range</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="agetPlanterByCostRangeForm" class="requestForm">
+                    <input type="number" placeholder="Planter Minimum Cost" id="aminCost">
+                    <input type="number" placeholder="Planter Maximum Cost" id="amaxCost">
+                    <input type="submit" value="Get Planters" class="methodButton">
+                </form>
+            </div>
+
+        </div>
+    </div>
+<!-- Plant Section -->
+
+    <div id="acontainerPlant" class="container">
+        <div class="sideMethods">
+            <div onclick="addPlantFun(1)">Add Plant</div>
+            <div onclick="addPlantFun(2)">Update Plant</div>
+            <div onclick="addPlantFun(3)">Delete Plant</div>
+            <div onclick="addPlantFun(4)">Get Planter By Id</div>
+            <div onclick="addPlantFun(5)">Get Planter By Name</div>
+            <div onclick="addPlantFun(6)">Get All Plants</div>
+            <div onclick="addPlantFun(7)">Get Planter By Type</div>
+        </div>
+        <div class="content" id="acontentPlant">
+            <div id="addPlantData" class="contentData">
+                <h1>Add Plant</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="requestForm" id="addPlantForm">
+                    <input type="number" placeholder="Plant Height" id="apHeight">
+                    <input type="text" placeholder="Plant Spread" id="apSpread">
+                    <input type="text" placeholder="Plant Common Name" id="apCName">
+                    <input type="text" placeholder="Plant Bloom Time" id="apBloom">
+                    <input type="text" placeholder="Plant medicinal" id="apMedicinal">
+                    <input type="text" placeholder="Plant Difficulty Level" id="apDifficultyLevel">
+                    <input type="text" placeholder="Plant Temperature" id="apTemperature">
+                    <input type="text" placeholder="Type Of Plant" id="apType">
+                    <input type="text" placeholder="Plant Description" id="apDescription">
+                    <input type="number" placeholder="Plant Stock" id="apStock">
+                    <input type="number" placeholder="Plant Cost" id="apCost">
+                    <input type="submit" value="Add Plant" class="methodButton">
+                </form>
+            </div>
+
+
+
+            <div id="updatePlantData" class="contentData">
+                <h1>Update Plant</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="requestForm" id="updatePlantForm">
+                    <input type="number" placeholder="Plant Id" id="upId">
+                    <input type="number" placeholder="Plant Height" id="upHeight">
+                    <input type="text" placeholder="Plant Spread" id="upSpread">
+                    <input type="text" placeholder="Plant Common Name" id="upCName">
+                    <input type="text" placeholder="Plant Bloom Time" id="upBloom">
+                    <input type="text" placeholder="Plant medicinal" id="upMedicinal">
+                    <input type="text" placeholder="Plant Difficulty Level" id="upDifficultyLevel">
+                    <input type="text" placeholder="Plant Temperature" id="upTemperature">
+                    <input type="text" placeholder="Type Of Plant" id="upType">
+                    <input type="text" placeholder="Plant Description" id="upDescription">
+                    <input type="number" placeholder="Plant Stock" id="upStock">
+                    <input type="number" placeholder="Plant Cost" id="upCost">
+                    <input type="submit" value="Update Plant" class="methodButton">
+                </form>
+            </div>
+
+            <div id="deletePlantData" class="contentData">
+                <h1>Delete Plant</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="requestForm" id="deletePlantForm">
+                    <input type="number" placeholder="Plant Id" id="dpId">
+                    <input type="submit" value="Delete Plant" class="methodButton">
+                </form>
+            </div>
+
+            <div id="agetPlantByIdData" class="contentData">
+                <h1>Get Plant By Id</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="requestForm" id="agetPlantByIdForm">
+                    <input type="number" placeholder="Plant Id" id="agpId">
+                    <input type="submit" value="Get Plant" class="methodButton">
+                </form>
+            </div>
+
+
+            <div id="agetPlantByNameData" class="contentData">
+                <h1>Get Plant By Name</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="requestForm" id="agetPlantByNameForm">
+                    <input type="text" placeholder="Plant Common Name" id="agpCName">
+                    <input type="submit" value="Get Plant" class="methodButton">
+                </form>
+            </div>
+
+            <div id="agetPlantsData" class="contentData">
+                <h1>Get All Plants</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="requestForm" id="agetPlantsForm">
+                    <input type="submit" value="Get Plants" class="methodButton" >
+                </form>
+            </div>
+
+
+            <div id="agetPlantByTypeData" class="contentData">
+                <h1>Get Plant By Type</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="requestForm" id="agetPlantByTypeForm">
+                    <input type="text" placeholder="Plant Type" id="agpType">
+                    <input type="submit" value="Get Plant" class="methodButton">
+                </form>
+            </div>
+
+
+        </div>
+    </div> 
+<!-- Seed Section -->
+    <div id="acontainerSeed" class="container">
+    <div class="sideMethods">
+        <div onclick="addSeedFun(1)">Add Seed</div>
+        <div onclick="addSeedFun(2)">Update Seed</div>
+        <div onclick="addSeedFun(3)">Delete Seed</div>
+        <div onclick="addSeedFun(4)">Get Seed By Id</div>
+        <div onclick="addSeedFun(5)">Get Seed By Name</div>
+        <div onclick="addSeedFun(6)">Get All Plants</div>
+        <div onclick="addSeedFun(7)">Get Seed By Type</div>
+    </div>
+    <div class="content" id="contentSeed">
+        <div id="addSeedData" class="contentData">
+            <h1>Add Seed</h1>
+            <h4>Seed Details</h4>
+            <form type="submit" class="requestForm" id="addSeedForm">
+                <input type="text" placeholder="Seed Common Name" id="aSName">
+                    <input type="text" placeholder="Seed Bloom Time" id="aSBloom">
+                    <input type="text" placeholder="Seed Watering" id="aSWatering" >
+                    <input type="text" placeholder="Seed Difficulty Level" id="aSDifficultyLevel">
+                    <input type="text" placeholder="Seed Temperature" id="aSTemperature">
+                    <input type="text" placeholder="Type Of Seeds" id="aSType">
+                    <input type="text" placeholder="Seeds Description" id="aSDescription">
+                    <input type="number" placeholder="Seed Stock" id="aSStock">
+                    <input type="number" placeholder="Seed Cost" id="aSCost">
+                    <input type="number" placeholder="Seeds Per Packet" id="aSPacket">
+                <input type="submit" value="Add Seed" class="methodButton">
+            </form>
+        </div>
+
+
+
+        <div id="updateSeedData" class="contentData">
+            <h1>Update Seed</h1>
+            <h4>Seed Details</h4>
+            <form type="submit" class="requestForm" id="updateSeedForm">
+                    <input type="number" placeholder="Seed Id" id="uSId">
+                    <input type="text" placeholder="Seed Common Name" id="uSName">
+                    <input type="text" placeholder="Seed Bloom Time" id="uSBloom">
+                    <input type="text" placeholder="Seed Watering" id="uSWatering" >
+                    <input type="text" placeholder="Seed Difficulty Level" id="uSDifficultyLevel">
+                    <input type="text" placeholder="Seed Temperature" id="uSTemperature">
+                    <input type="text" placeholder="Type Of Seeds" id="uSType">
+                    <input type="text" placeholder="Seeds Description" id="uSDescription">
+                    <input type="number" placeholder="Seed Stock" id="uSStock">
+                    <input type="number" placeholder="Seed Cost" id="uSCost">
+                    <input type="number" placeholder="Seeds Per Packet" id="uSPacket">
+                <input type="submit" value="Update Seed" class="methodButton">
+            </form>
+        </div>
+
+        <div id="deleteSeedData" class="contentData">
+            <h1>Delete Seed</h1>
+            <h4>Seed Details</h4>
+            <form type="submit" class="requestForm" id="deleteSeedForm">
+                <input type="number" placeholder="Seed Id" id="dSId">
+                <input type="submit" value="Delete Seed" class="methodButton">
+            </form>
+        </div>
+
+        <div id="agetSeedByIdData" class="contentData">
+            <h1>Get Seed By Id</h1>
+            <h4>Seed Details</h4>
+            <form type="submit" class="requestForm" id="agetSeedByIdForm">
+                <input type="number" placeholder="Seed Id" id="agSId">
+                <input type="submit" value="Get Seed" class="methodButton">
+            </form>
+        </div>
+
+
+        <div id="agetSeedByNameData" class="contentData">
+            <h1>Get Seed By Name</h1>
+            <h4>Seed Details</h4>
+            <form type="submit" class="requestForm" id="agetSeedByNameForm">
+                <input type="text" placeholder="Seed Common Name" id="agSCName">
+                <input type="submit" value="Get Seed" class="methodButton">
+            </form>
+        </div>
+
+        <div id="agetSeedsData" class="contentData">
+            <h1>Get All Seeds</h1>
+            <h4>Seed Details</h4>
+            <form type="submit" class="requestForm" id="agetSeedsForm">
+                <input type="submit" value="Get Seeds" class="methodButton" >
+            </form>
+        </div>
+
+
+        <div id="agetSeedByTypeData" class="contentData">
+            <h1>Get Seed By Type</h1>
+            <h4>Seed Details</h4>
+            <form type="submit" class="requestForm" id="agetSeedByTypeForm">
+                <input type="text" placeholder="Seed Type" id="agSType">
+                <input type="submit" value="Get Seed" class="methodButton">
+            </form>
+        </div>
+
+    </div>
+    </div> 
+</div> 
+
+
+<!-- Customer Section -->
+<div id="Customer">
+    <div class="customerToggle1">
+        <div onclick="changeToColor(6)" id="cplanterToggle" class="planterToggle">Planter</div>
+        <div onclick="changeToColor(7)" id="cplantToggle" class="plantToggle">Plant</div>
+        <div onclick="changeToColor(8)" id="cseedToggle" class="seedToggle">Seed</div>
+        <div onclick="changeToColor(4)" id="orderToggle" class="orderToggle">Order</div>
+        <div onclick="changeToColor(5)" id="profileToggle" class="profileToggle">Profile</div>
+    </div>
+    <!-- Planter Section -->
+    <div id="ccontainerPlanter" class="container">
+        <div  class="sideMethods">
+            <div onclick="addPlanterFun1(8)">Get Planter By Id</div>
+            <div onclick="addPlanterFun1(9)">Get Planter By Shape</div>
+            <div onclick="addPlanterFun1(10)">Get All Planters</div>
+            <div onclick="addPlanterFun1(11)">Get Planter By Cost Range</div>
+        </div>
+        <div id="ccontentPlanter" class="content">
+            <div id="cgetPlanterById" class="contentData">
+                <h1>Get Planter By Id</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="cgetPlanterByIdForm" class="requestForm">
+                    <input type="number" placeholder="Planter Id" id="cgPid">
+                    <input type="submit" value="Get Planter" class="methodButton">
+                </form>
+            </div>
+        
+            <div id="cgetPlanterByShape" class="contentData">
+                <h1>Get Planter By Shape</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="cgetPlanterByShapeForm" class="requestForm">
+                    <input type="text" placeholder="Planter Shape" id="csPshape">
+                    <input type="submit" value="Get Planter" class="methodButton">
+                </form>
+            </div>
+            <div id="cgetPlanters" class="contentData">
+                <h1>Get All Planters</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="cgetPlantersForm" class="requestForm">
+                    <input type="submit" value="Get Planters" class="methodButton">
+                </form>
+            </div>
+            <div id="cgetPlanterByCostRange" class="contentData">
+                <h1>Get Planter By Cost Range</h1>
+                <h4>Planter Details</h4>
+                <form type="submit" id="cgetPlanterByCostRangeForm" class="requestForm">
+                    <input type="number" placeholder="Planter Minimum Cost" id="cminCost">
+                    <input type="number" placeholder="Planter Maximum Cost" id="cmaxCost">
+                    <input type="submit" value="Get Planters" class="methodButton">
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- Plant Section -->
+    <div id="ccontainerPlant" class="container">
+        <div class="sideMethods">
+            <div onclick="addPlantFun(8)">Get Planter By Id</div>
+            <div onclick="addPlantFun(9)">Get Planter By Name</div>
+            <div onclick="addPlantFun(10)">Get All Plants</div>
+            <div onclick="addPlantFun(11)">Get Planter By Type</div>
+        </div>
+        <div class="content" id="ccontentPlant">
+            <div id="cgetPlantByIdData" class="contentData">
+                <h1>Get Plant By Id</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="requestForm" id="cgetPlantByIdForm">
+                    <input type="number" placeholder="Plant Id" id="cgpId">
+                    <input type="submit" value="Get Plant" class="methodButton">
+                </form>
+            </div>
+
+
+            <div id="cgetPlantByNameData" class="contentData">
+                <h1>Get Plant By Name</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="requestForm" id="cgetPlantByNameForm">
+                    <input type="text" placeholder="Plant Common Name" id="cgpCName">
+                    <input type="submit" value="Get Plant" class="methodButton">
+                </form>
+            </div>
+
+            <div id="cgetPlantsData" class="contentData">
+                <h1>Get All Plants</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="requestForm" id="cgetPlantsForm">
+                    <input type="submit" value="Get Plants" class="methodButton" >
+                </form>
+            </div>
+
+
+            <div id="cgetPlantByTypeData" class="contentData">
+                <h1>Get Plant By Type</h1>
+                <h4>Plant Details</h4>
+                <form type="submit" class="requestForm" id="cgetPlantByTypeForm">
+                    <input type="text" placeholder="Plant Type" id="cgpType">
+                    <input type="submit" value="Get Plant" class="methodButton">
+                </form>
+            </div>
+        </div>
+    </div> 
+<!-- Seed Section -->
+    <div id="ccontainerSeed" class="container">
+    <div class="sideMethods">
+        <div onclick="addSeedFun(8)">Get Seed By Id</div>
+        <div onclick="addSeedFun(9)">Get Seed By Name</div>
+        <div onclick="addSeedFun(10)">Get All Plants</div>
+        <div onclick="addSeedFun(11)">Get Seed By Type</div>
+    </div>
+    <div class="content" id="contentSeed">
+        <div id="cgetSeedByIdData" class="contentData">
+            <h1>Get Seed By Id</h1>
+            <h4>Seed Details</h4>
+            <form type="submit" class="requestForm" id="cgetSeedByIdForm">
+                <input type="number" placeholder="Seed Id" id="cgSId">
+                <input type="submit" value="Get Seed" class="methodButton">
+            </form>
+        </div>
+
+
+        <div id="cgetSeedByNameData" class="contentData">
+            <h1>Get Seed By Name</h1>
+            <h4>Seed Details</h4>
+            <form type="submit" class="requestForm" id="cgetSeedByNameForm">
+                <input type="text" placeholder="Seed Common Name" id="cgSCName">
+                <input type="submit" value="Get Seed" class="methodButton">
+            </form>
+        </div>
+
+        <div id="cgetSeedsData" class="contentData">
+            <h1>Get All Seeds</h1>
+            <h4>Seed Details</h4>
+            <form type="submit" class="requestForm" id="cgetSeedsForm">
+                <input type="submit" value="Get Seeds" class="methodButton" >
+            </form>
+        </div>
+
+
+        <div id="cgetSeedByTypeData" class="contentData">
+            <h1>Get Seed By Type</h1>
+            <h4>Seed Details</h4>
+            <form type="submit" class="requestForm" id="cgetSeedByTypeForm">
+                <input type="text" placeholder="Seed Type" id="cgSType">
+                <input type="submit" value="Get Seed" class="methodButton">
+            </form>
+        </div>
+    </div>
+    </div>
+<!-- Order Section -->
+    <div id="containerOrder" class="container">
+    <div class="sideMethods">
+        <div onclick="OrderFun(1)">Add Order</div>
+        <div onclick="OrderFun(2)">Update Order</div>
+        <div onclick="OrderFun(3)">Delete Order By Id</div>
+        <div onclick="OrderFun(4)">View Order By Id</div>
+        <div onclick="OrderFun(5)">View All Orders</div>
+    </div>
+    <div class="content" id="contentOrder">
+        <div id="addOrderData" class="contentData">
+            <h1>Add Order</h1>
+            <h4>Order Details</h4>
+            <form type="submit" class="requestForm" id="addOrderForm">
+                <input type="text" placeholder="Transaction Mode" id="oTranscation">
+                <input type="number" placeholder="Quantity" id="oQty">
+                <input type="text" placeholder="Seed Name" id="oSeed">
+                <input type="text" placeholder="Plant Name" id="oPlant">
+                <input type="submit" value="Add Plant" class="methodButton">
+            </form>
+        </div>
+
+
+
+        <div id="updateOrderData" class="contentData">
+            <h1>Update Order</h1>
+            <h4>Order Details</h4>
+            <form type="submit" class="requestForm" id="updateOrderForm">
+                <input type="number" placeholder="Plant Id" id="upI">
+                <input type="number" placeholder="Plant Height" id="upHeiht">
+                <input type="text" placeholder="Plant Spread" id="upSpred">
+                <input type="text" placeholder="Plant Common Name" id="upName">
+                <input type="text" placeholder="Plant Bloom Time" id="upBom">
+                <input type="text" placeholder="Plant medicinal" id="upMecinal">
+                <input type="text" placeholder="Plant Difficulty Level" id="upfficultyLvel">
+                <input type="text" placeholder="Plant Temperature" id="upTempature">
+                <input type="text" placeholder="Type Of Plant" id="upTe">
+                <input type="text" placeholder="Plant Description" id="upDeiption">
+                <input type="number" placeholder="Plant Stock" id="upock">
+                <input type="number" placeholder="Plant Cost" id="upt">
+                <input type="submit" value="Update Plant" class="methodButton">
+            </form>
+        </div>
+
+        <div id="deleteOrderData" class="contentData">
+            <h1>Delete Order</h1>
+            <h4>Order Details</h4>
+            <form type="submit" class="requestForm" id="deleteOrderForm">
+                <input type="number" placeholder="Plant Id" id="dpd">
+                <input type="submit" value="Delete Plant" class="methodButton">
+            </form>
+        </div>
+
+        <div id="getOrderByIdData" class="contentData">
+            <h1>View Order By Id</h1>
+            <h4>Order Details</h4>
+            <form type="submit" class="requestForm" id="getOrderByIdForm">
+                <input type="number" placeholder="Plant Id" id="gpI">
+                <input type="submit" value="Get Plant" class="methodButton">
+            </form>
+        </div>
+
+        <div id="getOrderData" class="contentData">
+            <h1>View All Order</h1>
+            <h4>Order Details</h4>
+            <form type="submit" class="requestForm" id="getOrdersForm">
+                <input type="submit" value="Get Plants" class="methodButton" >
+            </form>
+        </div>
+
+
+    </div>
+    </div> 
+<!-- Profile Section -->
+    <div id="containerProfile" class="container">
+    <div class="sideMethods">
+        <div onclick="ProfileFun(1)">Update Profile</div>
+        <div onclick="ProfileFun(2)">View Profile</div>
+    </div>
+    <div class="content" id="contentProfile">
+        <div id="updateProfileData" class="contentData">
+            <h1>Update Profile</h1>
+            <h4>Profile Details</h4>
+            <form type="submit" class="requestForm" id="updateProfileForm">
+                <input type="number" placeholder="Customer Id" id="uCustomerId">
+                <input type="text" placeholder="Customer Name" id="uCustomerName">
+                    <input type="text" placeholder="Customer Email" id="uCustomerEmail">
+                    <input type="text" placeholder="Customer User Name" id="uCustomerUser" >
+                    <input type="text" placeholder="Customer Password" id="uCustomerPass">
+                <input type="submit" value="Update Profile" class="methodButton">
+            </form>
+        </div>
+
+
+        <div id="getProfileByIdData" class="contentData">
+            <h1>View Profile By Id</h1>
+            <h4>Profile Details</h4>
+            <form type="submit" class="requestForm" id="getProfileByIdForm">
+                <input type="number" placeholder="Customer Id" id="gCId">
+                <input type="submit" value="View Profile" class="methodButton">
+            </form>
+        </div>
+
+    </div>
+    </div> 
+</div>
+
+</body>
+
+</html>
+
+<script src="index.js"></script>
