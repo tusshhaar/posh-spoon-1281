@@ -13,7 +13,7 @@
   //   document.getElementById("textRocker").append(newstr);
   //   count++;
   //  },300);
-  let user="admin"
+  let user=""
 
    function checkfun(){
     document.getElementById("slide_menu").style.top="0%"
@@ -54,6 +54,9 @@ let customerToggle=  document.getElementById("customerToggle");
 let planterToggle=  document.getElementById("planterToggle")
 let plantToggle= document.getElementById("plantToggle")
 let seedToggle=  document.getElementById("seedToggle")
+let planterToggle1=  document.getElementById("cplanterToggle")
+let plantToggle1= document.getElementById("cplantToggle")
+let seedToggle1=  document.getElementById("cseedToggle")
 let orderToggle=  document.getElementById("orderToggle")
 let profileToggle=  document.getElementById("profileToggle")
 
@@ -63,9 +66,9 @@ let profileToggle=  document.getElementById("profileToggle")
 let Pcontainer=document.getElementById("acontainerPlanter");
 let pcontainer=document.getElementById("acontainerPlant");
 let Scontainer=document.getElementById("acontainerSeed");
-let Pcontainer1=document.getElementById("containerPlanter");
-let pcontainer1=document.getElementById("containerPlant");
-let Scontainer1=document.getElementById("containerSeed");
+let Pcontainer1=document.getElementById("ccontainerPlanter");
+let pcontainer1=document.getElementById("ccontainerPlant");
+let Scontainer1=document.getElementById("ccontainerSeed");
 let Ocontainer=document.getElementById("containerOrder");
 let profilecontainer=document.getElementById("containerProfile");
 
@@ -78,6 +81,10 @@ let P4=document.getElementById("agetPlanterById");
 let P5=document.getElementById("agetPlanterByShape");
 let P6=document.getElementById("agetPlanters");
 let P7=document.getElementById("agetPlanterByCostRange");
+let P41=document.getElementById("cgetPlanterById");
+let P51=document.getElementById("cgetPlanterByShape");
+let P61=document.getElementById("cgetPlanters");
+let P71=document.getElementById("cgetPlanterByCostRange");
 
 // plant
 let p1=  document.getElementById("addPlantData");
@@ -87,6 +94,10 @@ let p4=  document.getElementById("agetPlantByIdData");
 let p5=  document.getElementById("agetPlantByNameData");
 let p6=  document.getElementById("agetPlantsData");
 let p7=  document.getElementById("agetPlantByTypeData");
+let p41=  document.getElementById("cgetPlantByIdData");
+let p51=  document.getElementById("cgetPlantByNameData");
+let p61=  document.getElementById("cgetPlantsData");
+let p71=  document.getElementById("cgetPlantByTypeData");
 
 // seed
 let s1=  document.getElementById("addSeedData");
@@ -96,6 +107,10 @@ let s4=  document.getElementById("agetSeedByIdData");
 let s5=  document.getElementById("agetSeedByNameData");
 let s6=  document.getElementById("agetSeedsData");
 let s7=  document.getElementById("agetSeedByTypeData");
+let s41=  document.getElementById("cgetSeedByIdData");
+let s51=  document.getElementById("cgetSeedByNameData");
+let s61=  document.getElementById("cgetSeedsData");
+let s71=  document.getElementById("cgetSeedByTypeData");
 
 
 //  Order
@@ -139,6 +154,12 @@ plantToggle.style.backgroundColor="transparent";
 plantToggle.style.color="black";
 seedToggle.style.backgroundColor="transparent";
 seedToggle.style.color="black";
+planterToggle1.style.backgroundColor="transparent";
+planterToggle1.style.color="black";
+plantToggle1.style.backgroundColor="transparent";
+plantToggle1.style.color="black";
+seedToggle1.style.backgroundColor="transparent";
+seedToggle1.style.color="black";
 orderToggle.style.backgroundColor="transparent";
 orderToggle.style.color="black";
 profileToggle.style.backgroundColor="transparent";
@@ -148,6 +169,9 @@ event.target.style.color="white";
 Pcontainer.style.display="none";
 pcontainer.style.display="none";
 Scontainer.style.display="none";
+Pcontainer1.style.display="none";
+pcontainer1.style.display="none";
+Scontainer1.style.display="none";
 Ocontainer.style.display="none";
 profilecontainer.style.display="none";
 if(numberMethod==1){
@@ -160,7 +184,13 @@ if(numberMethod==1){
       Ocontainer.style.display="flex";
     }else if(numberMethod==5){
       profilecontainer.style.display="flex";
-    }
+    }else if(numberMethod==6){
+      Pcontainer1.style.display="flex";
+        }else if(numberMethod==7){
+          pcontainer1.style.display="flex";
+        }else if(numberMethod==8){
+          Scontainer1.style.display="flex";
+        }
  }
 
 
@@ -176,6 +206,11 @@ function addPlanterFun1(numberMethod){
   P5.style.display="none";
   P6.style.display="none";
   P7.style.display="none";
+  P41.style.display="none";
+  P51.style.display="none";
+  P61.style.display="none";
+  P71.style.display="none";
+
   p1.style.display="none";
 p2.style.display="none";
 p3.style.display="none";
@@ -183,6 +218,10 @@ p4.style.display="none";
 p5.style.display="none";
 p6.style.display="none";
 p7.style.display="none";
+p41.style.display="none";
+p51.style.display="none";
+p61.style.display="none";
+p71.style.display="none";
 
 s1.style.display="none";
   s2.style.display="none";
@@ -191,6 +230,10 @@ s1.style.display="none";
     s5.style.display="none";
     s6.style.display="none";
     s7.style.display="none";  
+    s41.style.display="none";
+    s51.style.display="none";
+    s61.style.display="none";
+    s71.style.display="none"; 
 
     o1.style.display="none";
       o2.style.display="none";
@@ -216,14 +259,18 @@ P5.style.display="block";
 P6.style.display="block";
   }else if(numberMethod==7){
 P7.style.display="block";
-  }
+  }else if(numberMethod==8){
+    P41.style.display="block";
+      }else if(numberMethod==9){
+    P51.style.display="block";
+      }else if(numberMethod==10){
+    P61.style.display="block";
+      }else if(numberMethod==11){
+    P71.style.display="block";
+      }
 }
 
-
-
 //  Plant Function 
-
-
 function addPlantFun(numberMethod){
 p1.style.display="none";
 p2.style.display="none";
@@ -232,6 +279,12 @@ p4.style.display="none";
 p5.style.display="none";
 p6.style.display="none";
 p7.style.display="none";
+p41.style.display="none";
+p51.style.display="none";
+p61.style.display="none";
+p71.style.display="none";
+
+
 
 P1.style.display="none";
   P2.style.display="none";
@@ -240,6 +293,10 @@ P1.style.display="none";
   P5.style.display="none";
   P6.style.display="none";
   P7.style.display="none";
+  P41.style.display="none";
+  P51.style.display="none";
+  P61.style.display="none";
+  P71.style.display="none";
 
   s1.style.display="none";
   s2.style.display="none";
@@ -248,6 +305,11 @@ P1.style.display="none";
     s5.style.display="none";
     s6.style.display="none";
     s7.style.display="none";  
+    s41.style.display="none";
+    s51.style.display="none";
+    s61.style.display="none";
+    s71.style.display="none";
+   
 
     o1.style.display="none";
       o2.style.display="none";
@@ -272,7 +334,15 @@ p5.style.display="block";
 p6.style.display="block";
   }else if(numberMethod==7){
 p7.style.display="block";
-  }
+  }else if(numberMethod==8){
+    p41.style.display="block";
+      }else if(numberMethod==9){
+    p51.style.display="block";
+      }else if(numberMethod==10){
+    p61.style.display="block";
+      }else if(numberMethod==11){
+    p71.style.display="block";
+      }
 }
 
 //seed Function
@@ -311,7 +381,18 @@ P3.style.display="none";
 
     c1.style.display="none";
     c2.style.display="none";
-    
+    s41.style.display="none";
+    s51.style.display="none";
+    s61.style.display="none";
+    s71.style.display="none";
+    p41.style.display="none";
+    p51.style.display="none";
+    p61.style.display="none";
+    p71.style.display="none";
+    P41.style.display="none";
+      P51.style.display="none";
+      P61.style.display="none";
+      P71.style.display="none";
   if(numberMethod==1){
 s1.style.display="block";
   }else if(numberMethod==2){
@@ -326,7 +407,15 @@ s5.style.display="block";
 s6.style.display="block";
   }else if(numberMethod==7){
 s7.style.display="block";
-  }
+  }else if(numberMethod==8){
+    s41.style.display="block";
+      }else if(numberMethod==9){
+    s51.style.display="block";
+      }else if(numberMethod==10){
+    s61.style.display="block";
+      }else if(numberMethod==11){
+    s71.style.display="block";
+      }
 }
 
 //  Order Function
@@ -366,7 +455,18 @@ function OrderFun(numberMethod){
       o3.style.display="none";
         o4.style.display="none";
         o5.style.display="none";
-
+        s41.style.display="none";
+        s51.style.display="none";
+        s61.style.display="none";
+        s71.style.display="none";
+        p41.style.display="none";
+        p51.style.display="none";
+        p61.style.display="none";
+        p71.style.display="none";
+        P41.style.display="none";
+          P51.style.display="none";
+          P61.style.display="none";
+          P71.style.display="none";
         if(numberMethod==1){
           o1.style.display="block";
             }else if(numberMethod==2){
@@ -421,7 +521,18 @@ function ProfileFun(numberMethod){
 
       c1.style.display="none";
       c2.style.display="none";
-      
+      s41.style.display="none";
+      s51.style.display="none";
+      s61.style.display="none";
+      s71.style.display="none";
+      p41.style.display="none";
+      p51.style.display="none";
+      p61.style.display="none";
+      p71.style.display="none";
+      P41.style.display="none";
+        P51.style.display="none";
+        P61.style.display="none";
+        P71.style.display="none";
     if(numberMethod==1){
   c1.style.display="block";
     }else if(numberMethod==2){
@@ -446,10 +557,8 @@ document.getElementById("signupForm").addEventListener("submit",(event) =>{
   event.preventDefault();
   signupCustomer();
 })
-
 async function signupCustomer(){
-  console.log("I am in method")
- let form = document.getElementById("signupForm")
+  let form = document.getElementById("signupForm")
 let obj={
   customerName:form.cName.value,
   customerEmail:form.cEmail.value,
@@ -463,7 +572,6 @@ let obj={
     pincode:form.cPin.value
   }
 };
-console.log("yes started")
 let data = fetch('http://localhost:8888/customer/register',{
   method:'POST',
   body:JSON.stringify(obj),
@@ -474,8 +582,67 @@ let data = fetch('http://localhost:8888/customer/register',{
 })
 console.log("Completed")
 let res = await data;
-console.log(res);
-// .then(data =>
-//   console.log(JSON.stringify(data)));
-//   console.log("I have done")
- }
+if(res.ok){
+  signupHide();
+  alert("You Have Signed Up Successfully");
+  form.reset(); 
+}else{
+  alert("Check Details");
+}
+}
+
+
+
+
+document.getElementById("loginForm").addEventListener("submit",(event) =>{
+  event.preventDefault();
+  loginCustomer();
+})
+async function loginCustomer(){
+  let form = document.getElementById("loginForm")
+  let obj={};
+  let user="";
+  if(toggleU.textContent=="Admin"){
+    user="admin"
+    obj={
+      adminUsername :form.LoginUserName.value,
+      adminPassword:form.LoginUserPass.value
+    }
+  }else{
+    user="customer";
+    obj={
+      customerUsername :form.LoginUserName.value,
+      customerPassword:form.LoginUserPass.value
+    }
+  }
+  let data = fetch(`http://localhost:8888/${user}/login`,{
+    method:'PUT',
+    body:JSON.stringify(obj),
+    headers:{
+      'Content-Type':'application/json'
+    }
+  })
+
+  let res = await data;
+  let serach=res.json()
+  if(res.ok){
+    loginHide();
+document.getElementById("loginId1").textContent=form.LoginUserName.value;
+document.getElementById("loginId2").textContent=form.LoginUserName.value;
+document.getElementById("logout1").textContent="Logout";
+document.getElementById("logout2").textContent="Logout";
+document.getElementById("s1").style.display="none";
+document.getElementById("l1").style.display="none";
+document.getElementById("s2").style.display="none";
+document.getElementById("l2").style.display="none";
+    alert("You Have Logged In Successfully");
+    form.reset(); 
+  }else{
+    alert("Check Details");
+  }
+  }
+
+  function logout(){
+    window.location.href="index.html"
+    alert("Successfully Logged out");
+  }

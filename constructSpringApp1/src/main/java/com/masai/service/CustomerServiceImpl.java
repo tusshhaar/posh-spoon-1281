@@ -76,7 +76,7 @@ public class CustomerServiceImpl implements CustomerService {
 					
 					sessionRepo.save(current);
 					
-					return current.toString();
+					return current.getCustomerUuid();
 					
 				}else
 					

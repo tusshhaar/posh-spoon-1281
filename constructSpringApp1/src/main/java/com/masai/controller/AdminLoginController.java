@@ -54,7 +54,7 @@ public class AdminLoginController {
 	@Autowired
 	private PlantService plantService;
 	
-	@GetMapping("/login")
+	@PutMapping("/login")
 	public ResponseEntity<String> adminLogin(@RequestBody AdminLoginDTO loginDTO) throws AdminLoginException{
 		
 		String str = aLoginService.adminLoginDTO(loginDTO);

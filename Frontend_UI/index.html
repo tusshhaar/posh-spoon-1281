@@ -25,16 +25,18 @@
             </div>
         </div>
         <div id="navbarData1">
-            <span id="loginId1"></span>
+            <span id="loginId1" class="navbarTitleChangers"></span>
+            <span id="logout1" onclick="logout()" class="navbarTitleChangers"></span>
             <li> <a href="#signup" onclick="cencelS()" id="s1">SignUp</a> </li>
             <li> <a href="#login" onclick="cencelL()" id="l1">Login</a> </li>
         </div>
     </div>
     <div id="slide_menu" id="navbarData2">
         <div id="cencel" onclick="cencel()"><i class="fa-solid fa-xmark"></i></div>
-        <span id="loginId2"></span>
+        <span id="loginId2" class="navbarTitleChangers"></span>
+        <span id="logout2" onclick="logout()" class="navbarTitleChangers"></span>
         <li> <a href="#signup" onclick="cencelS()" id="s2">Signup</a> </li>
-        <li> <a href="#login" onclick="cencelL()" itemid="l2">Login</a> </li>
+        <li> <a href="#login" onclick="cencelL()" id="l2">Login</a> </li>
     </div>
 
 
@@ -78,16 +80,16 @@
             <span onclick="loginHide()" class="quitter">&#128473;</span>
         </div>
         <hr>
-        <form type="submit" class="loginForm" id="formLogin">
+        <form type="submit" class="loginForm" id="loginForm" method="PUT">
             <div class="toggleButton">
                 <div onclick="changeToAdmin()" id="adminToggle" class="adminToggle">Admin</div>
                 <div onclick="changeToCustomer()" id="customerToggle" class="customerToggle">Customer</div>
             </div>
             <div id="loginData">
                 <label for=""> <span id="toggleU">Admin</span> UserName </label>
-                <input required type="text" placeholder="Enter User-Name Name" class="userName">
+                <input required type="text" placeholder="Enter User-Name Name" class="userName" id="LoginUserName">
                 <label for=""> <span id="toggleP">Admin</span> Password</label>
-                <input required type="password" placeholder="Enter Password" class="userPass">
+                <input required type="password" placeholder="Enter Password" class="userPass" id="LoginUserPass">
                 <input type="submit" value="Login" id="loginButton">
             </div>
         </form>
@@ -129,7 +131,7 @@
 
 <!-- Admin Section -->
 <div id="Admin">
-    <div class="adminToggle1">
+    <div class="adminToggle1" id="admintoggle1">
         <div onclick="changeToColor(1)" id="planterToggle" class="planterToggle">Planter</div>
         <div onclick="changeToColor(2)" id="plantToggle" class="plantToggle">Plant</div>
         <div onclick="changeToColor(3)" id="seedToggle" class="seedToggle">Seed</div>
@@ -426,20 +428,21 @@
 <!-- Customer Section -->
 <div id="Customer">
     <div class="customerToggle1">
-        <div onclick="changeToColor(1)" id="planterToggle" class="planterToggle">Planter</div>
-        <div onclick="changeToColor(2)" id="plantToggle" class="plantToggle">Plant</div>
-        <div onclick="changeToColor(3)" id="seedToggle" class="seedToggle">Seed</div>
+        <div onclick="changeToColor(6)" id="cplanterToggle" class="planterToggle">Planter</div>
+        <div onclick="changeToColor(7)" id="cplantToggle" class="plantToggle">Plant</div>
+        <div onclick="changeToColor(8)" id="cseedToggle" class="seedToggle">Seed</div>
         <div onclick="changeToColor(4)" id="orderToggle" class="orderToggle">Order</div>
         <div onclick="changeToColor(5)" id="profileToggle" class="profileToggle">Profile</div>
     </div>
     <!-- Planter Section -->
     <div id="ccontainerPlanter" class="container">
         <div  class="sideMethods">
-            <div onclick="addPlanterFun1(4)">Get Planter By Id</div>
-            <div onclick="addPlanterFun1(5)">Get Planter By Shape</div>
-            <div onclick="addPlanterFun1(6)">Get All Planters</div>
-            <div onclick="addPlanterFun1(7)">Get Planter By Cost Range</div>
+            <div onclick="addPlanterFun1(8)">Get Planter By Id</div>
+            <div onclick="addPlanterFun1(9)">Get Planter By Shape</div>
+            <div onclick="addPlanterFun1(10)">Get All Planters</div>
+            <div onclick="addPlanterFun1(11)">Get Planter By Cost Range</div>
         </div>
+        <div id="ccontentPlanter" class="content">
             <div id="cgetPlanterById" class="contentData">
                 <h1>Get Planter By Id</h1>
                 <h4>Planter Details</h4>
@@ -448,6 +451,7 @@
                     <input type="submit" value="Get Planter" class="methodButton">
                 </form>
             </div>
+        
             <div id="cgetPlanterByShape" class="contentData">
                 <h1>Get Planter By Shape</h1>
                 <h4>Planter Details</h4>
@@ -477,11 +481,12 @@
 <!-- Plant Section -->
     <div id="ccontainerPlant" class="container">
         <div class="sideMethods">
-            <div onclick="addPlantFun(4)">Get Planter By Id</div>
-            <div onclick="addPlantFun(5)">Get Planter By Name</div>
-            <div onclick="addPlantFun(6)">Get All Plants</div>
-            <div onclick="addPlantFun(7)">Get Planter By Type</div>
+            <div onclick="addPlantFun(8)">Get Planter By Id</div>
+            <div onclick="addPlantFun(9)">Get Planter By Name</div>
+            <div onclick="addPlantFun(10)">Get All Plants</div>
+            <div onclick="addPlantFun(11)">Get Planter By Type</div>
         </div>
+        <div class="content" id="ccontentPlant">
             <div id="cgetPlantByIdData" class="contentData">
                 <h1>Get Plant By Id</h1>
                 <h4>Plant Details</h4>
@@ -518,18 +523,17 @@
                     <input type="submit" value="Get Plant" class="methodButton">
                 </form>
             </div>
-
-
         </div>
     </div> 
 <!-- Seed Section -->
     <div id="ccontainerSeed" class="container">
     <div class="sideMethods">
-        <div onclick="addSeedFun(4)">Get Seed By Id</div>
-        <div onclick="addSeedFun(5)">Get Seed By Name</div>
-        <div onclick="addSeedFun(6)">Get All Plants</div>
-        <div onclick="addSeedFun(7)">Get Seed By Type</div>
+        <div onclick="addSeedFun(8)">Get Seed By Id</div>
+        <div onclick="addSeedFun(9)">Get Seed By Name</div>
+        <div onclick="addSeedFun(10)">Get All Plants</div>
+        <div onclick="addSeedFun(11)">Get Seed By Type</div>
     </div>
+    <div class="content" id="contentSeed">
         <div id="cgetSeedByIdData" class="contentData">
             <h1>Get Seed By Id</h1>
             <h4>Seed Details</h4>
@@ -566,7 +570,7 @@
                 <input type="submit" value="Get Seed" class="methodButton">
             </form>
         </div>
-
+    </div>
     </div>
 <!-- Order Section -->
     <div id="containerOrder" class="container">
@@ -582,16 +586,10 @@
             <h1>Add Order</h1>
             <h4>Order Details</h4>
             <form type="submit" class="requestForm" id="addOrderForm">
-                <input type="number" placeholder="Plant Height" id="ht">
-                <input type="text" placeholder="Plant Spread" id="apd">
-                <input type="text" placeholder="Plant Common Name" id="apom">
-                <input type="text" placeholder="Plant medicinal" id="apMedinal">
-                <input type="text" placeholder="Plant Difficulty Level" id="apDcultyLevel">
-                <input type="text" placeholder="Plant Temperature" id="apTature">
-                <input type="text" placeholder="Type Of Plant" id="pe">
-                <input type="text" placeholder="Plant Description" id="apDeption">
-                <input type="number" placeholder="Plant Stock" id="apStck">
-                <input type="number" placeholder="Plant Cost" id="apCst">
+                <input type="text" placeholder="Transaction Mode" id="oTranscation">
+                <input type="number" placeholder="Quantity" id="oQty">
+                <input type="text" placeholder="Seed Name" id="oSeed">
+                <input type="text" placeholder="Plant Name" id="oPlant">
                 <input type="submit" value="Add Plant" class="methodButton">
             </form>
         </div>

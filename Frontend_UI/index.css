@@ -125,15 +125,6 @@
      text-decoration: none;
      color: black;
  }
- #slide_menu>li>a:hover{
-     cursor: pointer;
-     background-color: black;
-     color: white;
-     width: auto;
-     margin: auto;
-     padding: 8px 20px;
-     border-radius: 30px;
- }
  #cencel{
      position: absolute;
      top: 20px;
@@ -142,13 +133,7 @@
  }
 
 
- #navbar>div>li:hover{
-     cursor: pointer;
- }
- #navbar>div>li:hover a{
-    color: black;
-    zoom: 120%;
- }
+ 
 .signupForm{
     display: flex;
     column-gap: 10%;
@@ -200,10 +185,7 @@ body{
     font-weight: bolder;
     font-size: 18px;
 }
-#signupButton:hover{
-    background-color: black;
-    color: white;
-}
+
 .quitter{
     font-size: 25px;
     margin-right: 3%;
@@ -231,11 +213,6 @@ body{
     padding-top: 5% ;
     padding-bottom: 5%;
     border-radius: 10px;
-}
-#adminToggle:hover ,#customerToggle:hover{
-    cursor: pointer;
-    background-color: rgb(172, 205, 222);
-    color: white;
 }
 #loginData{
     display: grid;
@@ -292,10 +269,7 @@ body{
     background-color: rgb(56, 54, 54);
     color: white;
 }
-.customerToggle1>div:hover,.adminToggle1>div:hover{
-    background-color: rgb(56, 54, 54);
-    color: white;
-}
+
 .container{
     padding-top: 10%;
     display: flex;
@@ -317,11 +291,7 @@ body{
     padding-left: 10%;
     margin-bottom: 3%;
 }
-.sideMethods>div:hover{
-    background-color: aquamarine;
-    color: black;
-    border-radius: 10px;
-}
+
 .content{
     width: 80%;
 }
@@ -342,6 +312,7 @@ body{
 .container{
     display: none;
 }
+
 #acontainerPlanter{
     display:flex;
 }
@@ -405,6 +376,45 @@ body{
 
 
 
+
+#slide_menu>li>a:hover{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    width: auto;
+    margin: auto;
+    padding: 8px 20px;
+    border-radius: 30px;
+}
+#navbar>div>li:hover{
+    cursor: pointer;
+}
+#navbar>div>li:hover a{
+   color: black;
+   zoom: 120%;
+}
+#signupButton:hover{
+    background-color: black;
+    color: white;
+}
+#adminToggle:hover ,#customerToggle:hover{
+    cursor: pointer;
+    background-color: rgb(172, 205, 222);
+    color: white;
+}
+.adminToggle1>div:hover,.customerToggle1>div:hover{
+    background-color: rgb(56, 54, 54);
+    color: white;
+}
+.sideMethods>div:hover{
+    background-color: aquamarine;
+    color: black;
+    border-radius: 10px;
+}
+.navbarTitleChangers{
+    font-size: 30px;
+    margin-left: 10%;
+}
 
 @media (max-width:1000px) and (min-width:700px){
     *{
