@@ -54,6 +54,8 @@ public class AdminLoginController {
 	@Autowired
 	private PlantService plantService;
 	
+	// Admin Login-----------------------------
+	
 	@GetMapping("/login")
 	public ResponseEntity<String> adminLogin(@RequestBody AdminLoginDTO loginDTO) throws AdminLoginException{
 		
@@ -61,6 +63,8 @@ public class AdminLoginController {
 		
 		return new ResponseEntity<>(str, HttpStatus.ACCEPTED);
 	}
+	
+	//Admin Logout-----------------------------
 	
 	@GetMapping("/logout")
 	public ResponseEntity<String> adminLogout(@Valid @RequestParam("key") String key) throws AdminLoginException{
@@ -70,6 +74,12 @@ public class AdminLoginController {
 		return new ResponseEntity<String>(str, HttpStatus.OK);
 	}
 	
+	
+	//----------------------------------------------------Customer Action Perform By Admin-------------------------------------------
+	
+	
+	//View Customer List ----------------------------------
+	
 	@GetMapping("/customers/{key}")
 	public ResponseEntity<List<Customer>> viewAllCustomer(@PathVariable("key") String key) throws CustomerException{
 		
@@ -77,70 +87,103 @@ public class AdminLoginController {
 		
 		return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
 	}
-
 	
-	@PostMapping("/Seed/{key}")
+	//Delete Customer By Id ------------------------------------
+	
+	@DeleteMapping("/customer/{id}/{key}")
+	public ResponseEntity<Customer> removeCustomerById(Integer customerId, String key) throws AdminLoginException, CustomerException{
+		
+		Customer customer = aLoginService.removeCustomerById(customerId, key);
+		
+		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+		
+	}
+	
+	
+	
+	//-------------------------------------------------Seed Action Perform By Admin-------------------------------------------------
+	
+	
+	
+	
+	//Add Seed --------------------------------------------
+	
+	@PostMapping("/seed/{key}")
 	public ResponseEntity<Seed> addSeedHandler(@RequestBody Seed seed, @PathVariable("key") String key) throws SeedException, AdminLoginException{
+		
 		Seed obj=seedServices.addSeed(seed, key);
 		
 		return new ResponseEntity<>(obj,HttpStatus.CREATED);
 		
 	}
 	
+	//Update Seed ------------------------------------
+	
+	@PutMapping("/seed/{key}")
+	public ResponseEntity<Seed> updateSeed(@RequestBody Seed seed,@PathVariable String key) throws SeedException, AdminLoginException{
+	
+		Seed seed1=	seedServices.updateSeed(seed,key);
+		
+	    return new ResponseEntity<Seed>(seed1,HttpStatus.OK);
+	}
+	
+	//Delete Seed -----------------------------------
+	
+	@DeleteMapping("/seed/{id}/{key}")
+	public ResponseEntity<Seed> delete(@PathVariable("id") Integer id,@PathVariable("key")String key) throws SeedException, AdminLoginException{
+	 
+		Seed seed=	seedServices.deleteSeed(id,key);
+	
+		return new ResponseEntity<Seed>(seed,HttpStatus.OK); 
+	}
+	
+	
+	
+	
+	//------------------------------------------------------Planter Action Perform By Admin---------------------------------------------
+	
+	
+	
+	
+	//Add Planter -----------------------------------
 
-
-    @PostMapping("/{loginId}/planter")
-	public ResponseEntity<Planter> addPlanterHandler(@PathVariable("loginId")String uuid,@RequestBody Planter planter) throws PlanterException, AdminException{
+    @PostMapping("/planter/{key}")
+	public ResponseEntity<Planter> addPlanterHandler(@PathVariable("key")String uuid,@RequestBody Planter planter) throws PlanterException, AdminException{
 		
     	Planter register = pService.addPlanter(uuid, planter);
 		
     	return new ResponseEntity<Planter>(register,HttpStatus.ACCEPTED);
 	}
+    
+    //Update Planter ------------------------------
 	
-	@PutMapping("/{loginId}/planter")
-	public ResponseEntity<Planter> updatePlanterHandler(@PathVariable("loginId")String uuid,@RequestBody Planter planter) throws PlanterException, AdminException{
+	@PutMapping("/planter/{key}")
+	public ResponseEntity<Planter> updatePlanterHandler(@PathVariable("key")String uuid,@RequestBody Planter planter) throws PlanterException, AdminException{
+		
 		Planter update = pService.updatePlanter(uuid, planter);
+		
 		return new ResponseEntity<Planter>(update,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/{loginId}/planter/{planterId}")
+	// Delete Planter ----------------------------------
+	
+	@DeleteMapping("/planter/{planterId}/{loginId}")
 	public ResponseEntity<Planter> deletePlanterHandler(@PathVariable("loginId")String uuid,@PathVariable Integer planterId) throws PlanterException, AdminException{
+		
 		Planter planter = pService.deletePlanter(uuid, planterId);
+		
 		return new ResponseEntity<Planter>(planter,HttpStatus.OK);
 	}
 	
-	@GetMapping("/{loginId}/planter/{planterId}")
-	public ResponseEntity<Planter> getPlanterByIdHandler(@PathVariable("loginId")String uuid,@PathVariable Integer planterId) throws PlanterException, AdminException, CustomerException{
-		Planter planter = pService.viewPlanter(uuid,planterId);
-		return new ResponseEntity<Planter>(planter,HttpStatus.OK);
-	}
-	
-	@GetMapping("/{loginId}/planter/{shape}")
-	public ResponseEntity<List<Planter>> getPlanterByShapeHandler(@PathVariable("loginId")String uuid, @PathVariable("shape")String shape) throws PlanterException, AdminException, CustomerException{
-		List<Planter> planter = pService.viewPlanterByShape(uuid,shape);
-		return new ResponseEntity<List<Planter>>(planter,HttpStatus.OK);
-	}
-	
-	@GetMapping("/planters")
-	public ResponseEntity<List<Planter>> getPlantersHandler(String uuid) throws PlanterException, CustomerException{
-		
-		List<Planter> planters = pService.viewAllPlanters(uuid);
-		
-		return new ResponseEntity<List<Planter>>(planters,HttpStatus.OK);
-	}
-	
-	@GetMapping("/planter/{min}/{max}")
-	public ResponseEntity<List<Planter>> getPlantersByCostRangeHandler(String uuid,@PathVariable("min")Double min,@PathVariable("max")Double max) throws PlanterException, CustomerException{
-		List<Planter> planter = pService.viewAllPlanters(uuid,min, max);
-		return new ResponseEntity<List<Planter>>(planter,HttpStatus.OK);
-	}
 
 
-
-	/*---------------------------------------------------------------------Plant Section-------------------------------------------------------------------*/
+	/*---------------------------------------------------------------------Plant Action Perform By Admin-------------------------------------------------------------------*/
+	
+	
+	
 	// Add plant
 
-	@PostMapping("/plants/{key}")
+	@PostMapping("/plant/{key}")
 	public ResponseEntity<Plant> addPlantHandler(@RequestBody Plant plant, @PathVariable("key") String key) throws PlantNotFoundException, AdminLoginException {
 
 		Plant pObj = plantService.addPlant(plant,"key");
@@ -150,9 +193,9 @@ public class AdminLoginController {
 
 	}
 
-	// Updating existing plant details
+	// Update plant
 
-	@PutMapping("/plants/{key}")
+	@PutMapping("/plant/{key}")
 	public ResponseEntity<Plant> updatePlantHandler(@PathVariable("key") String key,@RequestBody Plant plant) throws PlantNotFoundException, AdminLoginException {
 
 		Plant pObj = plantService.updatePlant(plant,key);
@@ -162,9 +205,9 @@ public class AdminLoginController {
 
 	}
 
-	// Delete existing plant by PlantId
+	// Delete plant
 
-	@DeleteMapping("/plants/{key}/{id}")
+	@DeleteMapping("/plant/{id}/{key}")
 	public ResponseEntity<Plant> deletePlantByIdHandler(@PathVariable("key") String key,@PathVariable("id") Integer plantId) throws PlantNotFoundException, AdminLoginException {
 
 
@@ -175,6 +218,6 @@ public class AdminLoginController {
 
 	}
 
-	/*---------------------------------------------------------------------**Plant Section End**---------------------------------------------------------------*/
+	
 
 }

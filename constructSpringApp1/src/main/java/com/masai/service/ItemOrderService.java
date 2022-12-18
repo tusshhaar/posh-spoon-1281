@@ -6,6 +6,7 @@ import com.masai.exception.CustomerException;
 import com.masai.exception.OrderException;
 import com.masai.exception.PlanterException;
 import com.masai.exception.SeedException;
+import com.masai.model.Cart;
 import com.masai.model.ItemOrder;
 import com.masai.model.Plant;
 import com.masai.model.Planter;
@@ -28,5 +29,9 @@ public interface ItemOrderService {
 	public String buyPlantWithNameAndId(ItemOrder order, String name, Integer id, String key) throws CustomerException, PlanterException;
 	
 	public String buySeedWithName(ItemOrder order, String name, String key) throws CustomerException, SeedException;
+	
+	public Cart viewCart(String key) throws OrderException;
+	
+	public String deleteItemFromCart(Integer bookingId, String key) throws OrderException, CustomerException;
 	
 }

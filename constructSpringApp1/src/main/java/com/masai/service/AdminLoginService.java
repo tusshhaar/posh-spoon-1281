@@ -14,4 +14,6 @@ public interface AdminLoginService {
 	public String adminLogoutDTO(String key) throws AdminLoginException;
 	
 	public List<Customer> viewAllCustomers(String key) throws CustomerException;
+	
+	public Customer removeCustomerById(Integer customerId, String key) throws AdminLoginException, CustomerException;
 }

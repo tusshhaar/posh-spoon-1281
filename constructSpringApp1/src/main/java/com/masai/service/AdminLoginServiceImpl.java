@@ -31,7 +31,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	private CustomerRepo customerRepo;
 	
 	
-	//ADMIN LOGIN
+	//ADMIN LOGIN -------------------------------------------
 
 	@Override
 	public String adminLoginDTO(AdminLoginDTO admin) throws AdminLoginException {
@@ -103,4 +103,49 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 		
 	}
 
+	@Override
+	public Customer removeCustomerById(Integer customerId, String key) throws AdminLoginException, CustomerException {
+		
+		AdminCurrentUserSession session = loggedRepo.findByAdminUuid(key);
+		
+		if(session!=null) {
+			
+			Optional<Customer> opt = customerRepo.findById(customerId);
+			
+			if(opt.isPresent()) {
+				
+				Customer customer = opt.get();
+				customerRepo.delete(customer);
+				
+				return customer;
+				
+			}else
+				
+				throw new CustomerException("Customer not found with id :"+customerId);
+			
+		}else
+			
+			throw new AdminLoginException("Admin key is invalid");
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

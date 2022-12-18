@@ -76,19 +76,45 @@ public class PlanterServiceImp implements PlanterService{
 	
 	@Override
 	public Planter viewPlanter(String uuid, Integer planterId) throws PlanterException ,CustomerException{
+		
 		AdminCurrentUserSession admin = loginDao.findByAdminUuid(uuid);
+		
 		if(admin==null) {
+			
 			CustomerCurrentUserSession customer = customerLogin.findByCustomerUuid(uuid);
+			
 			if(customer==null) {
-				throw new CustomerException("Nor Logged in as Customer or Admin");
+				
+				throw new CustomerException("Please provide valid key");
+			}else {
+				
+				Optional<Planter> optional = planterDao.findById(planterId);
+				
+				if(optional.isPresent()) {
+					
+					Planter planter = optional.get();
+					
+					return planter;
+					
+				}else
+					
+					throw new PlanterException("No planter is found with id :"+planterId);
 			}
+				
+				
 		}
 		Optional<Planter> opt =planterDao.findById(planterId);
+		
 		Planter updated = null;
+		
 		if(opt.isPresent()) {
+			
 			updated=opt.get();
+			
 			return updated;
+			
 		}else {
+			
 			throw new PlanterException("Planter not found with Id : "+planterId);
 		}
 	}
@@ -104,7 +130,21 @@ public class PlanterServiceImp implements PlanterService{
 			
 			if(customer==null) {
 				
-				throw new CustomerException("Nor Logged in as Customer or Admin");
+				throw new CustomerException("Please provide valid key");
+			}else {
+				
+				List<Planter> planters = planterDao.findByPlanterShape(planterShape);
+				
+				if(planters.isEmpty()) {
+					
+					throw new PlanterException("Planter not found with shape : "+planterShape);
+					
+				}else {
+					
+					return planters;
+				}
+					
+					
 			}
 		}
 		
@@ -136,7 +176,21 @@ public class PlanterServiceImp implements PlanterService{
 			
 			if(customer==null) {
 				
-				throw new CustomerException("Nor Logged in as Customer or Admin");
+				throw new CustomerException("Please provide valid key");
+			}else {
+				
+				List<Planter> planters = planterDao.findAll();
+				
+				if(planters.isEmpty()) {
+					
+					throw new PlanterException("No planter is available");
+					
+				}else {
+					
+					return planters;
+				}
+					
+					
 			}
 		}
 		List<Planter> list = planterDao.findAll();
@@ -150,16 +204,38 @@ public class PlanterServiceImp implements PlanterService{
 
 	@Override
 	public List<Planter> viewAllPlanters(String uuid,Double minCost, Double maxCost) throws PlanterException,CustomerException {
+		
 		AdminCurrentUserSession admin = loginDao.findByAdminUuid(uuid);
+		
 		if(admin==null) {
+		
 			CustomerCurrentUserSession customer = customerLogin.findByCustomerUuid(uuid);
+			
 			if(customer==null) {
-				throw new CustomerException("Nor Logged in as Customer or Admin");
+				
+				throw new CustomerException("Please provide valid key");
+			}else {
+				
+				List<Planter> planters = planterDao.findByPlanterBetweenMinAndMax(minCost, maxCost);
+				
+				if(planters.isEmpty()) {
+					
+					throw new PlanterException("No planter is available in this range");
+					
+				}else {
+					
+					return planters;
+				}
+					
+					
 			}
 		}
+		
 		List<Planter> list = planterDao.findByPlanterBetweenMinAndMax(minCost,maxCost);
+		
 		if(list.size()==0) {
-			throw new PlanterException("There are no planters available");
+		
+			throw new PlanterException("No planter is available in this range");
 		}
 		return list;
 	}

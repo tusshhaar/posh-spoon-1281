@@ -49,16 +49,23 @@ public class SeedServiceImpl implements SeedServices{
 
 	@Override
 	public Seed updateSeed(Seed seed,String key) throws SeedException,AdminLoginException{
-		// TODO Auto-generated method stub
+
 		AdminCurrentUserSession adminUser=adminrepo.findByAdminUuid(key);
+		
 		if(adminUser==null) {
+			
 			throw new AdminLoginException("admin details not matched");
 		}
 		else {
+			
 			Optional<Seed> opt=seedDao.findById(seed.getSeedId());
+			
 			if(opt.isPresent()) {
+				
 				return seedDao.save(seed);
+				
 			}else {
+				
 				throw new SeedException("invalid seed details");
 			}
 		}

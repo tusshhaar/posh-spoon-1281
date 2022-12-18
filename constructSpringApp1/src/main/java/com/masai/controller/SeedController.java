@@ -52,17 +52,9 @@ public class SeedController {
 		return new ResponseEntity<List<Seed>>(list,HttpStatus.OK);
 		
 	}
-	@DeleteMapping("/delete/{id}/{key}")
-	public ResponseEntity<Seed> delete(@PathVariable("id") Integer id,@PathVariable("key")String key) throws SeedException, AdminLoginException{
-	Seed seed=	seedServices.deleteSeed(id,key);
-	return new ResponseEntity<Seed>(seed,HttpStatus.OK); 
-	}
+
 	
-	@PutMapping("/update")
-	public ResponseEntity<Seed> updateSeed(@RequestBody Seed seed,@PathVariable String key) throws SeedException, AdminLoginException{
-	Seed seed1=	seedServices.updateSeed(seed,key);
-	return new ResponseEntity<Seed>(seed1,HttpStatus.OK);
-	}
+
 	
 	@GetMapping("/byName/{name}/{key}")
 	public ResponseEntity<Seed> byName(@PathVariable("name") String name,@PathVariable("key") String key) throws SeedException, AdminLoginException{
