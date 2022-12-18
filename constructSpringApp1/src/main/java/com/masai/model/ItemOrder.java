@@ -1,7 +1,6 @@
 package com.masai.model;
 
 import java.time.LocalDateTime;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +22,8 @@ public class ItemOrder {
 	@NotNull
 	private Integer bookingOrderId;
 	
+	private String sessionKey;
+	
 	@NotNull(message =  "Local DateTime is mandatory")
 	private LocalDateTime localDateTime;
 	
@@ -34,5 +35,8 @@ public class ItemOrder {
 	
 	@NotNull(message =  "Total Cost is mandatory")
 	private Double totalCost;
+	
+	private String productType;
+	
 	
 }
