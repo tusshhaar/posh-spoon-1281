@@ -212,9 +212,10 @@ body{
 .loginForm{
     display: grid;
     padding: 3%;
+    
 }
 .toggleButton{
-    width: 30%;
+    width: 50%;
     height: 40px;
     margin: auto;
     display: grid;
@@ -263,16 +264,18 @@ body{
     grid-template-columns: repeat(5,1fr);
     position: fixed;
     background-color: rgb(219, 244, 248);
-    width: 30%;
+    width: 100%;
+
     justify-content: space-around;
-    left: 31%;
+    padding: 10px 0px;
     border-radius: 10px;
 }
 .adminToggle1{
-    width: 30%;
-    left: 31%;
-    display: flex;
-
+    /* width: 30%; */
+    /* left: 31%; */
+    display: flex;  
+    justify-content: space-between;
+    
 }
 .customerToggle1>div,.adminToggle1>div{
     border-radius:6px;
@@ -280,7 +283,7 @@ body{
     justify-content: center;
     font-size: 20px;
     font-weight: bold;
-    padding: 3%;
+    /* padding: 3%; */
 }
 .adminToggle1>div{
     width: 100%;
@@ -347,26 +350,164 @@ body{
 } */
 
 
+#mobile_view{
+    background-color: red;
+    width: 100%;
+    padding: 10px 10px;
+    z-index: 1;
+    position: fixed;
+    margin-bottom: 200px;
+    display: none;
+}
+#mobile_view>label>i{
+    font-size: 25px;
+    
+}
+.check_mobile{
+    display: none;
+}
+.mobile_navbar{
+    
+    width: 70%;
+    margin-left: 15%;
+    border-radius: 20px;
+    background-color: aqua;
+    height: 100px;
+    text-align: center;
+    align-items: center;
+    z-index: 1;
+    transition: all 1s;
+    position: absolute;
+    margin-top: 100px;
+    top: -100%;
+    display: none;
+    
+}
+#mobile_nav_cencel{
+   position: absolute;
+   padding: 5px;
+   right: 5px;
+   top: 5px;
+   font-size: 20px;
+}
+.mobile_button{
+    margin-top: 35px;
+    padding: 5px 25px;
+    border-radius: 20px;
+}
+.content{
+    margin-top:50px ;
+}
+
+.sideMethods{
+    margin-top: 50px;
+}
 
 
 
 
-
-
-
-
-
-
-
-
- 
- @media (max-width:1000px) and (min-width:700px){
+@media (max-width:1000px) and (min-width:700px){
+    *{
+        font-size: 20px;
+    }
     #navbar{
         font-size: 15px;
+    }
+    .adminToggle1{
+        margin-top: 12%;
+    }
+    .content{
+        margin-top: 10%;
+    }
+    .sideMethods{
+        margin-top: 10%;
+        font-size: 15px;
+    }
+    .sideMethods>div{
+        font-size: 16px;
+        padding: 5px 0px;
+        text-align: center;
     }
  }
  
  @media (max-width:699px) and (min-width:100px){
+    *{
+    font-size: 12px;
+    }
+    .mobile_navbar{
+        display: block;
+    }
+
+    h1{
+        font-size: 17px;
+    }
+    #mobile_view{
+        display: block;
+    }
+
+    .adminToggle1{
+        width: 100%;
+        padding: 10px 0px;
+        display: flex;
+        margin-top: 25%;
+        z-index: 0; 
+        cursor: pointer;
+    }
+    .customerToggle1{
+        width: 100%;
+        padding: 10px 0px;
+        display: flex;
+        margin-top: 25%; 
+        z-index: 0;
+       cursor: pointer;
+    }
+   .adminToggle1>.planterToggle{
+    font-size: 15px;
+   }
+   .adminToggle1>.plantToggle{
+    font-size: 15px;
+   }
+   .adminToggle1>.seedToggle{
+    font-size: 15px;
+   }
+   .customerToggle1>.planterToggle {
+    font-size: 17px;
+   }
+   .customerToggle1>.plantToggle {
+    font-size: 17px;
+   }
+   .customerToggle1>.seedToggle {
+    font-size: 17px;
+   }
+   .customerToggle1>.orderToggle {
+    font-size: 17px;
+   }
+   .customerToggle1>.profileToggle {
+    font-size: 17px;
+   }
+    .content{
+        margin-top: 150px;
+        width: 65%;
+    }
+    .requestForm>input{
+        width: 95%;
+        padding: 5px 0px;
+        margin-top: 5px;
+    }
+    
+    .sideMethods{
+        margin-top:150px;
+        width: 35%;
+    }
+    .sideMethods>div{
+        font-size: 12px;
+        padding: 5px 0px;
+        text-align: center;
+    }
+    .sideMethods>div:hover{
+        background-color: blue;
+        cursor: pointer;
+    }
      #navbar{
          display: none;
      }
@@ -378,7 +519,57 @@ body{
      #menu{
          display: block;
      }
- 
+
+     .header>label{
+        font-size: 20px;
+        text-align: center;
+     }
+     
+
+     #signup{
+        width: 80%;
+        left: 10%;
+     }
+     .signupForm>div>label{
+        font-size: 15px;
+     }
+     .signupForm>div>input{
+        width: 90%;
+        padding: 10px 0px;
+        font-size: 11px;
+        border-radius: 10px;
+     }
+     #signupButton{
+        width: 100%;
+        padding: 0px 10px;
+        border-radius: 10px;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+     }
+     #login{
+        width: 80%;
+        left: 10%;
+     }
+     .loginForm>div>label{
+        font-size: 20px;
+     }
+     #loginData>input{
+        padding: 6px 10px;
+     }
+     #loginData>label>span{
+        font-size: 16px;
+     }
+     .adminToggle{
+        font-size: 16px;
+        cursor: pointer; 
+    }
+     .customerToggle{
+        font-size: 16px;
+        cursor: pointer;
+     }
+     
  }
 
 

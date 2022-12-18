@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css" />
+    <script src="https://kit.fontawesome.com/b87712823b.js" crossorigin="anonymous"></script>
     <title>Rocker | Plant</title>
 </head>
 
@@ -18,7 +19,7 @@
     </div>
     <div id=navbar>
         <div id="name_log">
-            <img class="text_logo" src="/R.png" alt="">
+            <img class="text_logo" src="R.png" alt="">
             <div id="textDiv">
                 <span class="textRocker" id="textRocker"></span>
             </div>
@@ -91,6 +92,40 @@
             </div>
         </form>
     </div>
+
+
+
+<!-- Mobile view from here only for navbara -->
+
+    <div id="mobile_view">
+        <label for="check_mobile">
+        <input type="checkbox" name="check" id="check_mobile" class="check_mobile" onclick="mobileView()">
+        <i class="fa-solid fa-bars"></i>
+    </label>
+    <!-- this script is only for mobile menu -->
+    <script>
+    function mobileView(){
+        document.getElementById("mobile_navbar").style.top="0%"
+    }
+    function cencle_mobile_view(){
+        document.getElementById("mobile_navbar").style.top="-100%"
+    }
+        </script>
+
+    </div>
+
+    <div id="mobile_navbar" class="mobile_navbar">
+        <i class="fa-sharp fa-solid fa-xmark" onclick="cencle_mobile_view()" id="mobile_nav_cencel"></i>
+        <button class="mobile_button" onclick="cencelS()">SignUp</button>
+        <button class="mobile_button" onclick="cencelL()">Login</button>
+    </div>
+
+    <!-- this above code is only for mobile screen -->
+
+
+
+
+
 
 <!-- Admin Section -->
 <div id="Admin">
