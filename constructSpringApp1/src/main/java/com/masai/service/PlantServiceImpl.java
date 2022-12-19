@@ -8,7 +8,6 @@ import com.masai.exception.PlanterException;
 import com.masai.model.AdminCurrentUserSession;
 import com.masai.model.CustomerCurrentUserSession;
 import com.masai.model.Plant;
-import com.masai.model.Planter;
 import com.masai.repository.AdminSessionRepo;
 import com.masai.repository.CustomerSessionRepo;
 import com.masai.repository.PlantDao;
