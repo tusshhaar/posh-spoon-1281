@@ -1,7 +1,7 @@
 # Online Plant Nursery Application
 
 
-This project is developed by a team of 5 members with the help of the Spring-Boot framework. The main objective of this Web services application is to cater needs of front-end developers to call different types of API as per the requirement.
+This project is developed by a team of 4 members with the help of the Spring-Boot framework. The main objective of this Web services application is to cater needs of front-end developers to call different types of API as per the requirement.
 
 
 ## Tech Stack and Tools
