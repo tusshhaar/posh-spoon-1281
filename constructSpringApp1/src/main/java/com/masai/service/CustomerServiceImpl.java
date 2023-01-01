@@ -11,8 +11,6 @@ import com.masai.model.Customer;
 import com.masai.model.CustomerCurrentUserSession;
 import com.masai.model.CustomerLoginDTO;
 import com.masai.model.RandomString;
-import com.masai.repository.AdminRepo;
-import com.masai.repository.AdminSessionRepo;
 import com.masai.repository.CustomerRepo;
 import com.masai.repository.CustomerSessionRepo;
 
@@ -24,12 +22,6 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	private CustomerSessionRepo sessionRepo;
-	
-	@Autowired
-	private AdminSessionRepo adminRepo;
-	
-	@Autowired
-	private AdminRepo aRepo;
 
 	@Override
 	public Customer registerCustomer(Customer customer) throws CustomerException {

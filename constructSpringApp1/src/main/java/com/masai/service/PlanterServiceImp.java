@@ -150,8 +150,6 @@ public class PlanterServiceImp implements PlanterService{
 		
 		List<Planter> planters =planterDao.findByPlanterShape(planterShape);
 		
-		Planter updated = null;
-		
 		if(planters.isEmpty()) {
 			
 			throw new PlanterException("Planter not found with shape : "+planterShape);

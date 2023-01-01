@@ -4,8 +4,6 @@ import com.masai.exception.CustomerException;
 import com.masai.model.Customer;
 import com.masai.model.CustomerLoginDTO;
 
-import jakarta.validation.constraints.Size.List;
-
 public interface CustomerService {
 	
 	public Customer registerCustomer(Customer customer) throws CustomerException;

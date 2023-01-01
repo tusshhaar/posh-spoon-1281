@@ -48,7 +48,7 @@ public class CustomerController {
 		return new ResponseEntity<>(customer, HttpStatus.ACCEPTED);
 	}
 	
-	@PutMapping("/login")
+	@GetMapping("/login")
 	public ResponseEntity<String> loginCustomer(@RequestBody CustomerLoginDTO dto) throws CustomerException{
 		
 		String str = cService.loginCustomer(dto);
@@ -56,8 +56,8 @@ public class CustomerController {
 		return new ResponseEntity<String>(str, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/logout")
-	public ResponseEntity<String> logoutCustomer(@RequestParam("key") String key) throws CustomerException{
+	@DeleteMapping("/logout/{key}")
+	public ResponseEntity<String> logoutCustomer(@PathVariable("key") String key) throws CustomerException{
 		
 		String str = cService.logoutCustomer(key);
 		

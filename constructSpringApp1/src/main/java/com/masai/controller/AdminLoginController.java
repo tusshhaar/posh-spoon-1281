@@ -28,10 +28,7 @@ import com.masai.model.Seed;
 import com.masai.service.AdminLoginService;
 import com.masai.service.SeedServices;
 
-import com.masai.model.AdminLoginDTO;
-import com.masai.model.Customer;
 import com.masai.model.Planter;
-import com.masai.service.AdminLoginService;
 import com.masai.service.PlanterService;
 
 
@@ -55,6 +52,7 @@ public class AdminLoginController {
 	private PlantService plantService;
 	
 
+	@GetMapping("/login")
 	public ResponseEntity<String> adminLogin(@RequestBody AdminLoginDTO loginDTO) throws AdminLoginException{
 		
 		String str = aLoginService.adminLoginDTO(loginDTO);
@@ -64,8 +62,8 @@ public class AdminLoginController {
 	
 	//Admin Logout-----------------------------
 	
-	@GetMapping("/logout")
-	public ResponseEntity<String> adminLogout(@Valid @RequestParam("key") String key) throws AdminLoginException{
+	@DeleteMapping("/logout/{key}")
+	public ResponseEntity<String> adminLogout(@Valid @PathVariable("key") String key) throws AdminLoginException{
 		
 		String str = aLoginService.adminLogoutDTO(key);
 		
@@ -89,7 +87,7 @@ public class AdminLoginController {
 	//Delete Customer By Id ------------------------------------
 	
 	@DeleteMapping("/customer/{id}/{key}")
-	public ResponseEntity<Customer> removeCustomerById(Integer customerId, String key) throws AdminLoginException, CustomerException{
+	public ResponseEntity<Customer> removeCustomerById(@PathVariable("id") Integer customerId,@PathVariable("key") String key) throws AdminLoginException, CustomerException{
 		
 		Customer customer = aLoginService.removeCustomerById(customerId, key);
 		
@@ -184,7 +182,7 @@ public class AdminLoginController {
 	@PostMapping("/plant/{key}")
 	public ResponseEntity<Plant> addPlantHandler(@RequestBody Plant plant, @PathVariable("key") String key) throws PlantNotFoundException, AdminLoginException {
 
-		Plant pObj = plantService.addPlant(plant,"key");
+		Plant pObj = plantService.addPlant(plant,key);
 
 		return new ResponseEntity<Plant>(pObj, HttpStatus.CREATED);
 
