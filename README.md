@@ -1,16 +1,6 @@
 # Online Plant Nursery Application
 
 
-//<p>
-       // <img
-      //  align="center"
-      //  src="https://github.com/parimalbiswas/tropical-jellyfish-2222/blob/main/Team.jpeg"
-      //  alt="Coding"
-      //  width="700"
-       // style="display: block"/>
-   // </p>
-   // <br>
-
 This project is developed by a team of 5 members with the help of the Spring-Boot framework. The main objective of this Web services application is to cater needs of front-end developers to call different types of API as per the requirement.
 
 
@@ -23,17 +13,6 @@ This project is developed by a team of 5 members with the help of the Spring-Boo
 - Postman
 - Lombok
 
-//## ER- Diagram
-//<p>
-     //   <img
-    //    align="center"
-  //      src="https://github.com/parimalbiswas/tropical-jellyfish-2222/blob/main/ER%20-DIA.jpg?raw=true"
-   //     alt="Coding"
-   //     width="700"
-    //    style="display: block"/>
-  //  </p>
-   // <br>
-
 
 ## Modules
 - Admin Module
@@ -44,12 +23,12 @@ This project is developed by a team of 5 members with the help of the Spring-Boo
 - Cart Module
 
 ## Features
-- Admin Features:
+Admin Features:
  - Admin can perform CRUD operation like add, update and delete by using generated session key.
  - Admin can delete customer also.
  - Admin can view the list of item and customer.
  
-- Customer Features:
+Customer Features:
  - Customer can register themseleves to use this application.
  - Customer can login to get the valid session token(id).
  - View list of available items.
