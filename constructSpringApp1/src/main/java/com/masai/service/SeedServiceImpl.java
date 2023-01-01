@@ -89,6 +89,7 @@ public class SeedServiceImpl implements SeedServices{
 			if(opt.isPresent()) {
 				
 				Seed seedAvailable=opt.get();
+				seedDao.delete(seedAvailable);
 				return seedAvailable;
 				
 			}
